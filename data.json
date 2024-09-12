@@ -1,0 +1,175 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "قهوه ترک بنمانو 250گرم بنگلادش اورجینال",
+      "price": 50000,
+      "image": "/public/images/products/پاکت-ایستاده-زیپدار-برای-بسته-بندی-قهوه-با-چاپ-اختصاصی.png"
+    },
+    {
+      "id": "2",
+      "name": "قهوه ترک بنمانو 250گرم بنگلادش اورجینال",
+      "price": 95000,
+      "image": "/public/images/products/V2DLCm.png"
+    },
+    {
+      "id": "3",
+      "name": "قهوه ترک بنمانو 250گرم بنگلادش اورجینال",
+      "price": 142000,
+      "image": "/public/images/products/images4.jpg"
+    },
+    {
+      "id": "4",
+      "name": "قهوه ترک بنمانو 250گرم بنگلادش اورجینال",
+      "price": 78000,
+      "image": "/public/images/products/images3.jpg"
+    },
+    {
+      "id": "5",
+      "name": "قهوه ترک بنمانو 250گرم بنگلادش اورجینال",
+      "price": 89000,
+      "image": "/public/images/products/images2.jog.jfif"
+    },
+    {
+      "id": "6",
+      "name": "قهوه ترک بنمانو 250گرم بنگلادش اورجینال",
+      "price": 190000,
+      "image": "/public/images/products/images.jpg"
+    },
+    {
+      "id": "7",
+      "name": "قهوه ترک بنمانو 250گرم بنگلادش اورجینال",
+      "price": 340000,
+      "image": "/public/images/products/BS6_4619-1100x1100.jpeg"
+    },
+    {
+      "id": "8",
+      "name": "قهوه ترک بنمانو 250گرم بنگلادش اورجینال",
+      "price": 100000,
+      "image": "/public/images/products/black-600.jpg"
+    }
+  ],
+  "articles": [
+    {
+      "id": "1",
+      "title": "طرز تهیه اسپرسو در خانه | با دستگاه و بدون دستگاه",
+      "image": "/public/images/مطالب خواندنی/cfa19d876ff29e3aacb29a9d644018b9.jpg",
+      "caption": "در این مقاله طرز تهیه اسپرسو در خانه و طرز تهیه اسپرسو بدون دستگاه را معرفی می کنیم اسپرسوی تهیه شده با این روش ها را هم می توانید به تنهایی میل کنید و یا به عنوان افزودنی در نوشیدنی ...",
+      "author": "rezai"
+    },
+    {
+      "id": "2",
+      "title": "طرز تهیه قهوه فرانسه با فرنچ پرس و دستگاه + اموزش گام به گام",
+      "image": "/public/images/مطالب خواندنی/Coffee-Jelly-4800-I-1.jpg",
+      "caption": "قهوه فرانسه یا فرانسوی روشی از دم کردن قهوه است که معمولا با دستگاهی به نام فرنچ پرس انجام میشود و غلظت آن رقیق و میزان کافئین آن متوسط است(این مورد بیشتر بستگی به نوع قهوه ای دارد که استفاده ...",
+      "author": "rezai"
+    },
+    {
+      "id": "3",
+      "title": "طرز تهیه قهوه فرانسه با فرنچ پرس و دستگاه + اموزش گام به گام",
+      "image": "/public/images/مطالب خواندنی/Coffee-Jelly-4800-I-1.jpg",
+      "caption": "قهوه فرانسه یا فرانسوی روشی از دم کردن قهوه است که معمولا با دستگاهی به نام فرنچ پرس انجام میشود و غلظت آن رقیق و میزان کافئین آن متوسط است(این مورد بیشتر بستگی به نوع قهوه ای دارد که استفاده ...",
+      "author": "rezai"
+    }
+  ],
+  "slider": [
+    {
+      "id": "2",
+      "name": "قهوه ترک بنمانو 250گرم بنگلادش اورجینال",
+      "price": 95000,
+      "image": "/public/images/slider/httpc.76.mymalaysianescafe-tarik-24-packs-200ml-pack-nestle-1712-27-nestle174.jpg",
+      "howtobuy":"خرید آنلاین با استفاده از درگاه های امن",
+      "send":"ارسال مرسوله های بالاتر از 500 هزار تومان فقط در شهر تهران رایگان خواهد بود",
+      "description":"dijflisdj"
+    },
+    {
+      "id": "3",
+      "name": "قهوه ترک بنمانو 250گرم بنگلادش اورجینال",
+      "price": 142000,
+      "image": "/public/images/slider/images.jpg",
+      "howtobuy":"خرید آنلاین با استفاده از درگاه های امن",
+      "send":"ارسال مرسوله های بالاتر از 500 هزار تومان فقط در شهر تهران رایگان خواهد بود",
+      "description":"dijflisdj"
+
+    },
+    {
+      "id": "5",
+      "name": "قهوه ترک بنمانو 250گرم بنگلادش اورجینال",
+      "price": 89000,
+      "image": "/public/images/slider/images5.jpg",
+      "howtobuy":"خرید آنلاین با استفاده از درگاه های امن",
+      "send":"ارسال مرسوله های بالاتر از 500 هزار تومان فقط در شهر تهران رایگان خواهد بود",
+      "description":"dijflisdj"
+
+    },
+    {
+      "id": "6",
+      "name": "قهوه ترک بنمانو 250گرم بنگلادش اورجینال",
+      "price": 190000,
+      "image": "/public/images/slider/nescafe-coffee-premix-500x500.webp",
+      "howtobuy":"خرید آنلاین با استفاده از درگاه های امن",
+      "send":"ارسال مرسوله های بالاتر از 500 هزار تومان فقط در شهر تهران رایگان خواهد بود",
+      "description":"dijflisdj"
+
+    },
+    {
+      "id": "7",
+      "name": "قهوه ترک بنمانو 250گرم بنگلادش اورجینال",
+      "price": 340000,
+      "image": "/public/images/slider/starbucks-colombia-medium-roast-ground-arabica-coffee-200g-500x500.webp",
+      "howtobuy":"خرید آنلاین با استفاده از درگاه های امن",
+      "send":"ارسال مرسوله های بالاتر از 500 هزار تومان فقط در شهر تهران رایگان خواهد بود",
+      "description":"dijflisdj"
+
+    },
+    {
+      "id": "8",
+      "name": "قهوه ترک بنمانو 250گرم بنگلادش اورجینال",
+      "price": 100000,
+      "image": "/public/images/slider/پودر-قهوه-آماده-2-1-سوکافه.jpg",
+      "howtobuy":"خرید آنلاین با استفاده از درگاه های امن",
+      "send":"ارسال مرسوله های بالاتر از 500 هزار تومان فقط در شهر تهران رایگان خواهد بود",
+      "description":"dijflisdj"
+
+    }
+  ],
+  "users": [
+    {
+      "id": "54dc",
+      "name": "امین",
+      "lastname": "پوربرایت",
+      "email": "amin@poor",
+      "mobile": "",
+      "password": "Amin5161"
+    },
+    {
+      "id": "d9bf",
+      "name": "lks",
+      "lastname": "s,m",
+      "email": "akj@sdjk",
+      "mobile": "",
+      "password": "123456",
+      "passrepeat": "123456"
+    },
+    {
+      "id": "5962",
+      "name": "ksdfj",
+      "lastname": "s;lvs",
+      "email": "sk@dsi",
+      "mobile": "",
+      "pass": "00000",
+      "passrepeat": "00000",
+      "username": "",
+      "password": ""
+    },
+    {
+      "id": "e322",
+      "name": "Amin",
+      "lastname": "poor",
+      "email": "amin1375.poor@gmial.com",
+      "mobile": "",
+      "password": "123456",
+      "passrepeat": "123456"
+    }
+  ]
+}

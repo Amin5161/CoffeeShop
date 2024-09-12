@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "Vazir";
+    src: local("Vazir"), url("./fonts/Vazir.woff2") format("woff2");
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Vazir-Light";
+    src: local("Vazir-Light"), url("./fonts/Vazir-Light.woff2") format("woff2");
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Vazir-Medium";
+    src: local("Vazir-Medium"),
+      url("./fonts/Vazir-Medium.woff2") format("woff2");
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Vazir-Bold";
+    src: local("Vazir-Bold"), url("./fonts/Vazir-Bold.woff2") format("woff2");
+    font-display: swap;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Vazir";
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* sidebar */
+.sidebar--open {
+  width: 66%;
+  height: 100vh;
+}
+
+.sidebar--close {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+/* sidebar */
+
+/* Rating */
+.textSm {
+  @apply text-sm !important;
+}
+.textBase {
+  @apply text-base !important;
+}
+
+/* Rating */
+
+
+/* footer */
+
+.blackLine::before {
+  content: "";
+  position: absolute;
+  width: 0.5rem;
+  height: 2px;
+  background-color: white;
+  right: -15px;
+  top: 15px;
+}
+
+/* footer */
