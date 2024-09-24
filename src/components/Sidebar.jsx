@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useContext, useState } from "react";
+=======
+import React, { useRef, useState } from "react";
+>>>>>>> 61573aeb594630db55b9a0520e56d0962ac9b03a
 import { IoMdClose } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
@@ -14,12 +18,25 @@ import { IoIosArrowBack } from "react-icons/io";
 import { HiArrowRightOnRectangle } from "react-icons/hi2";
 import { CiLight } from "react-icons/ci";
 import { CiDark } from "react-icons/ci";
+<<<<<<< HEAD
 import { DarkModeContext } from "./Context/DarkModeContext";
 
 export default function Sidebar({ setIsSidebarOpen, isSidebarOpen }) {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
   const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
   console.log(setIsSidebarOpen, isSidebarOpen);
+=======
+
+export default function Sidebar({
+  darkMod,
+  modHandler,
+  setDarkMod,
+  setIsSidebarOpen,
+  isSidebarOpen,
+}) {
+  const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
+
+>>>>>>> 61573aeb594630db55b9a0520e56d0962ac9b03a
   return (
     <div
       className={`fixed top-0 right-0 h-screen bg-white dark:bg-zinc-700 z-50 p-4 shadow-personal transition-transform duration-300 ease-in-out transform ${
@@ -83,21 +100,35 @@ export default function Sidebar({ setIsSidebarOpen, isSidebarOpen }) {
                 فروشگاه
               </NavLink>
             </div>
+<<<<<<< HEAD
             <IoIosArrowUp
               className={`transition delay-200 ${
+=======
+            <IoIosArrowUp className={`transition delay-200 ${
+>>>>>>> 61573aeb594630db55b9a0520e56d0962ac9b03a
                 isSubMenuOpen ? "transform rotate-180 text-orange-400" : ""
               }`}
             />
           </div>
+<<<<<<< HEAD
 
           {/* زیر منو فروشگاه */}
 
+=======
+          
+          {/* زیر منو فروشگاه */}
+          
+>>>>>>> 61573aeb594630db55b9a0520e56d0962ac9b03a
           <div
             id="store__subMenu"
             className={`transition-all delay-75 ${
               isSubMenuOpen ? "flex items-center justify-between" : "hidden"
             }`}
+<<<<<<< HEAD
           >
+=======
+          > 
+>>>>>>> 61573aeb594630db55b9a0520e56d0962ac9b03a
             <ul
               className="space-y-3 pt-2  w-[10rem] text-gray-700 pr-6 dark:text-black 
              child-hover:text-orange-500 text-sm cursor-pointer child:inline-block  "
@@ -178,6 +209,7 @@ export default function Sidebar({ setIsSidebarOpen, isSidebarOpen }) {
       </ul>
 
       <div className="flex flex-col gap-4 border-t-2 pt-4">
+<<<<<<< HEAD
         {/* سبد خرید */}
 
         <Link to="/cart" className="flex items-center gap-x-2">
@@ -189,6 +221,74 @@ export default function Sidebar({ setIsSidebarOpen, isSidebarOpen }) {
 
         <div className="cursor-pointer" onClick={() => toggleDarkMode()}>
           {darkMode !== undefined && darkMode ? (
+=======
+
+        {/* سبد خرید */}
+
+        <div className="relative group" aria-label="Shopping Cart">
+          <div className="flex items-center gap-x-2">
+            <IoCartOutline className="text-3xl text-orange-400 cursor-pointer " />
+            <span className="text-orange-400">سبد خرید</span>
+          </div>
+          <div
+            className="absolute left-0 opacity-0 invisible  group-hover:opacity-100 group-hover:visible space-y-3 shadow-personal  w-[20rem] text-gray-700 bg-slate-50 p-4 dark:bg-gray-700 dark:text-white rounded-xl
+              border-t-4 child:inline-block border-orange-300 transition-all delay-75"
+          >
+            <div className="flex items-center justify-center  w-full ">
+              <div className="flex items-center justify-between ">
+                <span className="text-[14px]">1مورد</span>
+                <div className="flex items-center gap-x-2 text-orange-300">
+                  <Link className="tracking-tighter text-[14px]">
+                    مشاهده سبد خرید
+                  </Link>
+                  <IoIosArrowBack />
+                </div>
+              </div>
+              <div className="flex mt-4 ">
+                <img
+                  className="w-24 h-30  "
+                  src="/public/images/پودر-قهوه-آماده-2-1-سوکافه.jpg"
+                  alt=""
+                />
+                <div className="flex flex-col mr-4 max-w-44">
+                  <h4 className=" font-vazirBold dark:text-gray-100 mb-6 text-base tracking-wider line-clamp-2  ">
+                    قهوه اسپرسو بن مانو 250 گرمی
+                  </h4>
+                  <div>
+                    <p className="text-green-400 text-[10px] tracking-wider">
+                      17500 تومان تخفیف
+                    </p>
+                    <div className="mt-2 ">
+                      <span className="font-semibold text-[14px] tracking-wider">
+                        196000
+                      </span>
+                      تومان
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-center justify-between mt-2 border-t border-gray-200 dark:border-gray-600 pt-2 ">
+                <div>
+                  <span className="opacity-50 text-[10px]">
+                    مبلغ قابل پرداخت
+                  </span>
+                  <p className="font-semibold text-sm tracking-wider">
+                    350000 تومان
+                  </p>
+                </div>
+                <button className="bg-green-400 dark:bg-emerald-500 dark:hover:bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-teal-700">
+                  ثبت سفارش
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* دارک مود */}
+
+        <div className="cursor-pointer" onClick={() => modHandler()}>
+          {darkMod !== undefined && darkMod ? (
+>>>>>>> 61573aeb594630db55b9a0520e56d0962ac9b03a
             <div className="flex items-center gap-x-4">
               <CiLight className="text-2xl text-orange-400" />
               <span className="text-orange-400">تم لایت</span>

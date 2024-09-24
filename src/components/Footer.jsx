@@ -8,7 +8,11 @@ import { LiaTelegram } from "react-icons/lia";
 
 export default function Footer() {
   return (
+<<<<<<< HEAD
     <section className="w-full h-[24rem] bg-zinc-600">
+=======
+    <section className="w-full h-auto bg-zinc-600 relative">
+>>>>>>> 61573aeb594630db55b9a0520e56d0962ac9b03a
       <div className="container">
         <div className="py-12">
           <div className="w-full flex justify-between flex-wrap lg:flex-nowrap gap-y-8 gap-x-8 ">
@@ -90,7 +94,10 @@ export default function Footer() {
           <div></div>
         </div>
       </div>
+<<<<<<< HEAD
       
+=======
+>>>>>>> 61573aeb594630db55b9a0520e56d0962ac9b03a
     </section>
   );
 }

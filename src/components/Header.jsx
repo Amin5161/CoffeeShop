@@ -1,12 +1,20 @@
+<<<<<<< HEAD
 import React, { useContext, useEffect, useMemo } from "react";
 import { IoCartOutline } from "react-icons/io5";
 import { CiDark } from "react-icons/ci";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+=======
+import React, { useContext, useEffect } from "react";
+import { IoCartOutline } from "react-icons/io5";
+import { CiDark } from "react-icons/ci";
+import { Link, NavLink } from "react-router-dom";
+>>>>>>> 61573aeb594630db55b9a0520e56d0962ac9b03a
 import { HiArrowRightOnRectangle } from "react-icons/hi2";
 import { CiLight } from "react-icons/ci";
 import { IoIosArrowBack } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { UserContext } from "./Context/UserContext";
+<<<<<<< HEAD
 import { DarkModeContext } from "./Context/DarkModeContext";
 import { useCart } from "./Context/CartContext";
 import { MdDeleteOutline } from "react-icons/md";
@@ -33,6 +41,18 @@ export default function Header({
     isMobileCartOpen,
     setIsMobileCartOpen,
   });
+=======
+import {DarkModeContext} from "./Context/DarkModeContext";
+export default function Header({
+  isSidebarOpen,
+  setIsSidebarOpen,
+  isMobileCartOpen,
+  setIsMobileCartOpen,
+}) {
+  const { user } = useContext(UserContext);
+  const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
+
+>>>>>>> 61573aeb594630db55b9a0520e56d0962ac9b03a
   return (
     <div className="flex items-center justify-between w-full mx-auto md:w-[90%] px-6 py-2 md:rounded-2xl md:top-4 fixed bg-white md:bg-zinc-950/60 dark:bg-zinc-950/60 backdrop-blur-sm z-50">
       {/* هدر دسکتاپ منو */}
@@ -134,6 +154,7 @@ export default function Header({
       <div className="hidden md:flex items-center gap-x-4">
         <div className="flex items-center gap-x-2  ">
           <div className="relative group " aria-label="Shopping Cart">
+<<<<<<< HEAD
             <div className="relative">
               <IoCartOutline
                 className="text-3xl text-[#ecc378] cursor-pointer "
@@ -152,12 +173,24 @@ export default function Header({
               <div className="flex items-center justify-center  w-full ">
                 <div className="flex items-center justify-between ">
                   <div className="flex text-left gap-x-2 text-orange-300">
+=======
+            <IoCartOutline className="text-3xl text-[#ecc378] cursor-pointer " />
+            <div
+              className="absolute left-0 opacity-0 invisible  group-hover:opacity-100 group-hover:visible space-y-3 shadow-personal mt-4 w-[20rem] text-gray-700 bg-slate-50 p-4 dark:bg-gray-700 dark:text-white rounded-xl
+              border-t-4 child:inline-block border-orange-300 transition-all delay-75"
+            >
+              <div className="flex items-center justify-center  w-full ">
+                <div className="flex items-center justify-between ">
+                  <span className="text-[14px]">1مورد</span>
+                  <div className="flex items-center gap-x-2 text-orange-300">
+>>>>>>> 61573aeb594630db55b9a0520e56d0962ac9b03a
                     <Link className="tracking-tighter text-[14px]">
                       مشاهده سبد خرید
                     </Link>
                     <IoIosArrowBack />
                   </div>
                 </div>
+<<<<<<< HEAD
 
                 <ul className="overflow-y-scroll max-h-80 px-2">
                   {cart.map((item) => (
@@ -202,12 +235,38 @@ export default function Header({
                     </li>
                   ))}
                 </ul>
+=======
+                <div className="flex mt-4 ">
+                  <img
+                    className="w-24 h-30  "
+                    src="/public/images/پودر-قهوه-آماده-2-1-سوکافه.jpg"
+                    alt=""
+                  />
+                  <div className="flex flex-col mr-4 max-w-44">
+                    <h4 className=" font-vazirBold dark:text-gray-100 mb-6 text-base tracking-wider line-clamp-2  ">
+                      قهوه اسپرسو بن مانو 250 گرمی
+                    </h4>
+                    <div>
+                      <p className="text-green-400 text-[10px] tracking-wider">
+                        17500 تومان تخفیف
+                      </p>
+                      <div className="mt-2 ">
+                        <span className="font-semibold text-[14px] tracking-wider">
+                          196000
+                        </span>
+                        تومان
+                      </div>
+                    </div>
+                  </div>
+                </div>
+>>>>>>> 61573aeb594630db55b9a0520e56d0962ac9b03a
                 <div className="flex items-center justify-between mt-2 border-t border-gray-200 dark:border-gray-600 pt-2 ">
                   <div>
                     <span className="opacity-50 text-[10px]">
                       مبلغ قابل پرداخت
                     </span>
                     <p className="font-semibold text-sm tracking-wider">
+<<<<<<< HEAD
                       {totalPrice} تومان
                     </p>
                   </div>
@@ -217,6 +276,14 @@ export default function Header({
                   >
                     ثبت سفارش
                   </Link>
+=======
+                      350000 تومان
+                    </p>
+                  </div>
+                  <button className="bg-green-400 dark:bg-emerald-500 dark:hover:bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-teal-700">
+                    ثبت سفارش
+                  </button>
+>>>>>>> 61573aeb594630db55b9a0520e56d0962ac9b03a
                 </div>
               </div>
             </div>
@@ -228,10 +295,14 @@ export default function Header({
               </span>
             ) : (
               <span aria-label="Toggle Dark Mode">
+<<<<<<< HEAD
                 <CiDark
                   aria-label="تغییر تم به دارک"
                   className="text-2xl text-[#ecc378]"
                 />
+=======
+                <CiDark className="text-2xl text-[#ecc378]" />
+>>>>>>> 61573aeb594630db55b9a0520e56d0962ac9b03a
               </span>
             )}
           </div>
@@ -255,20 +326,35 @@ export default function Header({
       <div className="flex md:hidden  h-8 items-center">
         <RxHamburgerMenu
           className="text-3xl text-zinc-700 dark:text-white cursor-pointer "
+<<<<<<< HEAD
           onClick={toggleSidebar}
+=======
+          onClick={() => {
+            setIsSidebarOpen(!isSidebarOpen);
+          }}
+>>>>>>> 61573aeb594630db55b9a0520e56d0962ac9b03a
         />
       </div>
 
       {/* لگو */}
 
       <div className="md:hidden h-8 w-[100px]">
+<<<<<<< HEAD
         <img src={logo} alt="logo type" className="h-full w-full" />
+=======
+        <img
+          src="/public/images/app-logo-type.svg"
+          alt="logo type"
+          className="h-full w-full"
+        />
+>>>>>>> 61573aeb594630db55b9a0520e56d0962ac9b03a
       </div>
 
       {/* سبد خرید موبایل */}
 
       <div className="relative group md:hidden h-8" aria-label="Shopping Cart">
         <IoCartOutline
+<<<<<<< HEAD
           onClick={() => navigate("/cart")}
           className="md:hidden text-3xl text-zinc-700 dark:text-white md:text-[#ecc378] cursor-pointer"
         />
@@ -277,6 +363,11 @@ export default function Header({
             {totalItems}
           </span>
         )}
+=======
+          className="md:hidden text-3xl text-zinc-700 dark:text-white md:text-[#ecc378] cursor-pointer"
+          onClick={() => setIsMobileCartOpen(!isMobileCartOpen)}
+        />
+>>>>>>> 61573aeb594630db55b9a0520e56d0962ac9b03a
       </div>
     </div>
   );

@@ -1,10 +1,17 @@
+<<<<<<< HEAD
 import React, { useContext, useEffect, useState } from "react";
+=======
+import React, { useEffect, useState } from "react";
+>>>>>>> 61573aeb594630db55b9a0520e56d0962ac9b03a
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { IoCartOutline } from "react-icons/io5";
 import { GoArrowSwitch } from "react-icons/go";
 import BasicRating from "./BasicRating";
+<<<<<<< HEAD
 import { useCart } from "./Context/CartContext";
+=======
+>>>>>>> 61573aeb594630db55b9a0520e56d0962ac9b03a
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -16,11 +23,14 @@ export default function Products() {
     });
   }, []);
 
+<<<<<<< HEAD
   const { cart, addToCart } = useCart();
   useEffect(() => {
     console.log("Updated cart:", cart);
   }, [cart]);
 
+=======
+>>>>>>> 61573aeb594630db55b9a0520e56d0962ac9b03a
   return (
     <section className="pt-20 md:pt-40 ">
       <div className="container sm:w-3/4 mx-auto ">
@@ -40,6 +50,7 @@ export default function Products() {
         <div className="grid grid-cols-2 md:grid-cols-3  lg:grid-cols-4 xl:grid-cols-4 gap-4 pt-4 md:pt-8">
           {products.map((product) => {
             return (
+<<<<<<< HEAD
               <Link to={`/product/${product.id}`} key={product.id}>
                 <div className="flex flex-col justify-between w-full h-72 sm:h-80  md:w-50 shadow-personal rounded-md overflow-hidden">
                   <img
@@ -67,6 +78,31 @@ export default function Products() {
                   </div>
                 </div>
               </Link>
+=======
+              <div
+                key={product.id}
+                className="flex flex-col justify-between w-full h-72 sm:h-80  md:w-50 shadow-personal rounded-md overflow-hidden"
+              >
+                <img
+                  className="w-full h-1/2 xs:h-[60%]  object-fill"
+                  src={product.image}
+                  alt=""
+                />
+                <div className="p-2 dark:bg-zinc-600">
+                  <p className="text-sm sm:text-base dark:text-white">
+                    {product.name}
+                  </p>
+                  <span className="text-green-500 pt-2 text-sm">
+                    {product.price}
+                  </span>
+                  <div className="flex justify-between items-center pt-2 ">
+                    <IoCartOutline />
+                    <GoArrowSwitch />
+                    <BasicRating />
+                  </div>
+                </div>
+              </div>
+>>>>>>> 61573aeb594630db55b9a0520e56d0962ac9b03a
             );
           })}
         </div>

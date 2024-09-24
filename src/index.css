@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+<<<<<<< HEAD
 html,
 body {
   margin: 0;
@@ -9,6 +10,8 @@ body {
   height: 100%;
   direction: rtl; /* تنظیم راست به چپ برای زبان فارسی */
 }
+=======
+>>>>>>> 61573aeb594630db55b9a0520e56d0962ac9b03a
 @layer base {
   @font-face {
     font-family: "Vazir";
@@ -38,6 +41,15 @@ body {
   margin: 0;
   padding: 0;
 }
+<<<<<<< HEAD
+=======
+body {
+  font-family: "Vazir";
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+>>>>>>> 61573aeb594630db55b9a0520e56d0962ac9b03a
 
 /* sidebar */
 .sidebar--open {
@@ -63,6 +75,10 @@ body {
 
 /* Rating */
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 61573aeb594630db55b9a0520e56d0962ac9b03a
 /* footer */
 
 .blackLine::before {
@@ -76,7 +92,10 @@ body {
 }
 
 /* footer */
+<<<<<<< HEAD
 
 body {
   
 }
+=======
+>>>>>>> 61573aeb594630db55b9a0520e56d0962ac9b03a
