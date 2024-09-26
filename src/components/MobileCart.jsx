@@ -14,7 +14,7 @@ export default function MobileCart({ isMobileCartOpen,setIsMobileCartOpen }) {
       </div>
       <div className="flex mt-4 ">
         <img
-          className="w-20 h-28  "
+          className="w-20 h-28"
           src="/public/images/products/black-600.jpg"
           alt=""
         />

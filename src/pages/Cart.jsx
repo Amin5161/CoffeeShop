@@ -30,7 +30,7 @@ export default function Cart() {
                     <div className="flex flex-col justify-between">
                       <h2 className="pb-4 font-vazirMedium">{item.name}</h2>
                       <p className="font-vazirMedium">
-                        قیمت: {item.price}{" "}
+                        قیمت: {item.price}
                         <span className="text-xs">تومان</span>
                       </p>
                     </div>

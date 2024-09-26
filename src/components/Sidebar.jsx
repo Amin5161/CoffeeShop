@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 import React, { useContext, useState } from "react";
-=======
-import React, { useRef, useState } from "react";
->>>>>>> 61573aeb594630db55b9a0520e56d0962ac9b03a
+
 import { IoMdClose } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
@@ -18,25 +15,14 @@ import { IoIosArrowBack } from "react-icons/io";
 import { HiArrowRightOnRectangle } from "react-icons/hi2";
 import { CiLight } from "react-icons/ci";
 import { CiDark } from "react-icons/ci";
-<<<<<<< HEAD
 import { DarkModeContext } from "./Context/DarkModeContext";
+import { SidebarContext } from "./Context/SidebarContext";
 
-export default function Sidebar({ setIsSidebarOpen, isSidebarOpen }) {
+export default function Sidebar() {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
   const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
+  const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
   console.log(setIsSidebarOpen, isSidebarOpen);
-=======
-
-export default function Sidebar({
-  darkMod,
-  modHandler,
-  setDarkMod,
-  setIsSidebarOpen,
-  isSidebarOpen,
-}) {
-  const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
-
->>>>>>> 61573aeb594630db55b9a0520e56d0962ac9b03a
   return (
     <div
       className={`fixed top-0 right-0 h-screen bg-white dark:bg-zinc-700 z-50 p-4 shadow-personal transition-transform duration-300 ease-in-out transform ${
@@ -58,7 +44,11 @@ export default function Sidebar({
         />
         <IoMdClose
           className="text-2xl cursor-pointer"
-          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          onClick={() => {
+            console.log("Sidebar Open Status Before:", isSidebarOpen);
+            setIsSidebarOpen(!isSidebarOpen);
+            console.log("Sidebar Open Status After:", !isSidebarOpen);
+          }}
         />
       </div>
 
@@ -100,35 +90,22 @@ export default function Sidebar({
                 فروشگاه
               </NavLink>
             </div>
-<<<<<<< HEAD
+
             <IoIosArrowUp
               className={`transition delay-200 ${
-=======
-            <IoIosArrowUp className={`transition delay-200 ${
->>>>>>> 61573aeb594630db55b9a0520e56d0962ac9b03a
                 isSubMenuOpen ? "transform rotate-180 text-orange-400" : ""
               }`}
             />
           </div>
-<<<<<<< HEAD
 
           {/* زیر منو فروشگاه */}
 
-=======
-          
-          {/* زیر منو فروشگاه */}
-          
->>>>>>> 61573aeb594630db55b9a0520e56d0962ac9b03a
           <div
             id="store__subMenu"
             className={`transition-all delay-75 ${
               isSubMenuOpen ? "flex items-center justify-between" : "hidden"
             }`}
-<<<<<<< HEAD
           >
-=======
-          > 
->>>>>>> 61573aeb594630db55b9a0520e56d0962ac9b03a
             <ul
               className="space-y-3 pt-2  w-[10rem] text-gray-700 pr-6 dark:text-black 
              child-hover:text-orange-500 text-sm cursor-pointer child:inline-block  "
@@ -209,20 +186,6 @@ export default function Sidebar({
       </ul>
 
       <div className="flex flex-col gap-4 border-t-2 pt-4">
-<<<<<<< HEAD
-        {/* سبد خرید */}
-
-        <Link to="/cart" className="flex items-center gap-x-2">
-          <IoCartOutline className="text-3xl text-orange-400 cursor-pointer " />
-          <span className="text-orange-400">سبد خرید</span>
-        </Link>
-
-        {/* دارک مود */}
-
-        <div className="cursor-pointer" onClick={() => toggleDarkMode()}>
-          {darkMode !== undefined && darkMode ? (
-=======
-
         {/* سبد خرید */}
 
         <div className="relative group" aria-label="Shopping Cart">
@@ -286,9 +249,8 @@ export default function Sidebar({
 
         {/* دارک مود */}
 
-        <div className="cursor-pointer" onClick={() => modHandler()}>
-          {darkMod !== undefined && darkMod ? (
->>>>>>> 61573aeb594630db55b9a0520e56d0962ac9b03a
+        <div className="cursor-pointer" onClick={() => toggleDarkMode()}>
+          {darkMode !== undefined && darkMode ? (
             <div className="flex items-center gap-x-4">
               <CiLight className="text-2xl text-orange-400" />
               <span className="text-orange-400">تم لایت</span>

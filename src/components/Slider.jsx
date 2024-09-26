@@ -9,10 +9,12 @@ import { IoCartOutline } from "react-icons/io5";
 import { GoArrowSwitch } from "react-icons/go";
 import BasicRating from "./BasicRating";
 import { Link } from "react-router-dom";
+import { useCart } from "./Context/CartContext";
 
 export default function Slider() {
   const [images, setImages] = useState([]);
 
+  const { addToCart } = useCart();
   useEffect(() => {
     const fetchPhotos = async () => {
       try {
@@ -58,28 +60,28 @@ export default function Slider() {
           {images.map((product) => {
             return (
               <SwiperSlide key={product.id}>
-                <Link to={`/slide/${product.id}`}>
                 <div className="flex flex-col justify-between w-full h-72 sm:h-80 md:w-50 shadow-personal rounded-md overflow-hidden mt-10">
-                  <img
-                    className="w-full h-1/2 xs:h-[63%] object-fill"
-                    src={product.image}
-                    alt={product.name} 
-                  />
-                  <div className="p-2 dark:bg-zinc-600">
+                  <Link to={`/slide/${product.id}`}>
+                      <img
+                        className="w-full h-40 object-fill"
+                        src={product.image}
+                        alt={product.name}
+                      />
+                  </Link>
+                  <div className="p-2 dark:bg-zinc-600 ">
                     <p className="text-sm sm:text-base dark:text-white">
                       {product.name}
                     </p>
                     <span className="text-green-500 pt-2 text-sm">
-                      {product.price}
+                      {product.price} تومان
                     </span>
                     <div className="flex justify-between items-center pt-2 ">
-                      <IoCartOutline />
+                      <IoCartOutline onClick={() => addToCart(product)} />
                       <GoArrowSwitch />
                       <BasicRating />
                     </div>
                   </div>
                 </div>
-                </Link>
               </SwiperSlide>
             );
           })}
