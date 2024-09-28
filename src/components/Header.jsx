@@ -12,8 +12,9 @@ import { useCart } from "./Context/CartContext";
 import { MdDeleteOutline } from "react-icons/md";
 import logo from "/public/images/app-logo-type.svg";
 import { SidebarContext } from "./Context/SidebarContext";
+import { MobileCartContext } from "./Context/MobileCartContext";
 
-export default function Header({ isMobileCartOpen, setIsMobileCartOpen }) {
+export default function Header() {
   const { user } = useContext(UserContext);
   const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
   const navigate = useNavigate();
@@ -25,16 +26,12 @@ export default function Header({ isMobileCartOpen, setIsMobileCartOpen }) {
     [cart]
   );
 
-  const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
-
+  const { setIsSidebarOpen } = useContext(SidebarContext);
+  const { setIsMobileCartOpen } = useContext(MobileCartContext);
   console.log(cart);
-  console.log({
-    isMobileCartOpen,
-    setIsMobileCartOpen,
-  });
 
   return (
-    <div className="flex items-center justify-between w-full mx-auto md:w-[90%] px-6 py-2 md:rounded-2xl md:top-4 fixed bg-white md:bg-zinc-950/60 dark:bg-zinc-950/60 backdrop-blur-sm z-50">
+    <div className="flex items-center justify-between w-full mx-auto md:w-[90%] px-6 py-2 md:rounded-2xl md:top-4 fixed bg-white md:bg-zinc-950/60 dark:bg-zinc-950/60 backdrop-blur-sm z-40">
       {/* هدر دسکتاپ منو */}
       <nav className="hidden md:flex items-center gap-x-6">
         <div>
@@ -221,6 +218,7 @@ export default function Header({ isMobileCartOpen, setIsMobileCartOpen }) {
               )}
             </div>
 
+            {/* دارک مود */}
             <div className="cursor-pointer" onClick={() => toggleDarkMode()}>
               {darkMode !== undefined && darkMode ? (
                 <span>
@@ -241,7 +239,9 @@ export default function Header({ isMobileCartOpen, setIsMobileCartOpen }) {
               <HiArrowRightOnRectangle className="text-2xl text-[#ecc378]" />
             </span>
             {user ? (
-              <p className="text-white">{user.name}</p>
+              <Link to='adminpanel'>
+                <p className="text-white">{user.name}</p>
+              </Link>
             ) : (
               <Link to="/login" className="text-[#ecc378] hidden lg:flex">
                 ورود | ثبت نام
@@ -255,7 +255,9 @@ export default function Header({ isMobileCartOpen, setIsMobileCartOpen }) {
       <div className="flex md:hidden  h-8 items-center">
         <RxHamburgerMenu
           className="text-3xl text-zinc-700 dark:text-white cursor-pointer "
-          onClick={() => setIsSidebarOpen(true)}
+          onClick={() => {
+            setIsSidebarOpen(true), setIsMobileCartOpen(false);
+          }}
         />
       </div>
 
@@ -267,7 +269,9 @@ export default function Header({ isMobileCartOpen, setIsMobileCartOpen }) {
       {/* سبد خرید موبایل */}
       <div className="relative group md:hidden h-8" aria-label="Shopping Cart">
         <IoCartOutline
-          onClick={() => setIsMobileCartOpen(!isMobileCartOpen)}
+          onClick={() => {
+            setIsMobileCartOpen(true), setIsSidebarOpen(false);
+          }}
           className="md:hidden text-3xl text-zinc-700 dark:text-white md:text-[#ecc378] cursor-pointer"
         />
         {totalItems > 0 && (

@@ -18,31 +18,36 @@ import Cart from "./pages/Cart";
 import { CartProvider } from "./components/Context/CartContext";
 import SlideDetail from "./pages/SlideDetail";
 import { SidebarProvider } from "./components/Context/SidebarContext";
+import { MobileCartProvider } from "./components/Context/MobileCartContext";
+import AdminPanel from "./pages/AdminPanel";
 
 export default function App() {
   return (
-    <CartProvider>
-      <UserProvider>
-        <DarkModeProvider>
-          <SidebarProvider>
-            <Routes>
-              <Route index element={<HomeComponent />} />
-              <Route path="/" element={<Layout />}>
-                <Route path="contact" element={<ContactUs />} />
-                <Route path="about" element={<About />} />
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/shop" element={<Shop />} />
-                <Route path="login" element={<Login />} />
-                <Route path="registration" element={<Registration />} />
-                <Route path="/" element={<Slider />} />
-                <Route path="/slide/:id" element={<SlideDetail />} />
-                <Route path="/product/:id" element={<ProductDetail />} />
-                <Route path="cart" element={<Cart />} />
-              </Route>
-            </Routes>
-          </SidebarProvider>
-        </DarkModeProvider>
-      </UserProvider>
-    </CartProvider>
+    <MobileCartProvider>
+      <CartProvider>
+        <UserProvider>
+          <DarkModeProvider>
+            <SidebarProvider>
+              <Routes>
+                <Route index element={<HomeComponent />} />
+                <Route path="/" element={<Layout />}>
+                  <Route path="contact" element={<ContactUs />} />
+                  <Route path="about" element={<About />} />
+                  <Route path="/blog" element={<Blog />} />
+                  <Route path="/shop" element={<Shop />} />
+                  <Route path="login" element={<Login />} />
+                  <Route path="registration" element={<Registration />} />
+                  <Route path="/" element={<Slider />} />
+                  <Route path="/slide/:id" element={<SlideDetail />} />
+                  <Route path="/product/:id" element={<ProductDetail />} />
+                  <Route path="cart" element={<Cart />} />
+                  <Route path="adminpanel" element={<AdminPanel />} />
+                </Route>
+              </Routes>
+            </SidebarProvider>
+          </DarkModeProvider>
+        </UserProvider>
+      </CartProvider>
+    </MobileCartProvider>
   );
 }

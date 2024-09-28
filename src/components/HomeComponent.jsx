@@ -18,7 +18,12 @@ function HomeComponent() {
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+
   const [isMobileCartOpen, setIsMobileCartOpen] = useState(false);
+  const handleCartClick = () => {
+    console.log("تغییر وضعیت سبد خرید");
+    setIsMobileCartOpen(!isMobileCartOpen);
+  };
 
   return (
     <div className="font-vazir bg-slate-50 dark:bg-zinc-800 flex flex-col min-h-screen">
@@ -26,13 +31,12 @@ function HomeComponent() {
         <header className="max-w-7xl mx-auto flex justify-center">
           <Header
             toggleSidebar={toggleSidebar}
-            isMobileCartOpen={isMobileCartOpen}
-            setIsMobileCartOpen={setIsMobileCartOpen}
+            handleCartClick={handleCartClick}
           />
           <Sidebar />
           <MobileCart
-            isMobileCartOpen={isMobileCartOpen}
-            setIsMobileCartOpen={setIsMobileCartOpen}
+          isMobileCartOpen={isMobileCartOpen}
+            handleCartClick={handleCartClick}
           />
         </header>
 

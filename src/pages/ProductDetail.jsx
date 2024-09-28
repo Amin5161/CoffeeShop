@@ -44,7 +44,9 @@ export default function ProductDetail() {
               <h1 className="border-b-2 font-vazirBold text-xl">
                 {product.name}
               </h1>
-              <p className="pt-4 font-vazirBold text-lg">{product.price} تومان</p>
+              <p className="pt-4 font-vazirBold text-lg">
+                {product.price} تومان
+              </p>
               <div className="pt-12 ">
                 <div className="flex items-start gap-x-2 ">
                   <FaHourglassEnd />
@@ -62,13 +64,13 @@ export default function ProductDetail() {
                   </p>
                   <div className="flex flex-col gap-1">
                     <button
-                      className="px-1 text-lg bg-zinc-600 text-white dark:bg-white dark:text-black"
+                      className="px-1 text-lg bg-zinc-600 text-white dark:bg-white dark:text-black rounded-t-md"
                       onClick={() => setCount(count + 1)}
                     >
                       +
                     </button>
                     <button
-                      className="px-1 text-xl bg-zinc-600 text-white  dark:bg-white dark:text-black"
+                      className="px-1 text-xl bg-zinc-600 text-white rounded-b-md dark:bg-white dark:text-black"
                       onClick={() => count > 1 && setCount(count - 1)}
                     >
                       -

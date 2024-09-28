@@ -63,12 +63,12 @@ export default function Slider() {
                 <div className="flex flex-col justify-between w-full h-72 sm:h-80 md:w-50 shadow-personal rounded-md overflow-hidden mt-10">
                   <Link to={`/slide/${product.id}`}>
                       <img
-                        className="w-full h-40 object-fill"
+                        className="w-full h-40 md:h-48 object-fill"
                         src={product.image}
                         alt={product.name}
                       />
                   </Link>
-                  <div className="p-2 dark:bg-zinc-600 ">
+                  <div className="p-2 h-1/2 dark:bg-zinc-600 ">
                     <p className="text-sm sm:text-base dark:text-white">
                       {product.name}
                     </p>

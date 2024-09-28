@@ -1,48 +1,93 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { IoMdClose } from "react-icons/io";
+import { useCart } from "./Context/CartContext";
+import { MdDeleteOutline } from "react-icons/md";
+import { MobileCartContext } from "./Context/MobileCartContext";
+import { useLocation } from "react-router-dom";
+import { SidebarContext } from "./Context/SidebarContext";
 
-export default function MobileCart({ isMobileCartOpen,setIsMobileCartOpen }) {
+export default function MobileCart() {
+  const { cart, addToCart, decreaseQuantity, removeFromCart, totalPrice } =
+    useCart();
+  const { isMobileCartOpen, setIsMobileCartOpen } =
+    useContext(MobileCartContext);
+
+  const { isSidebarOpen } = useContext(SidebarContext);
+
+  const { pathname } = useLocation();
+  console.log(pathname);
+
+  useEffect(() => {
+    setIsMobileCartOpen(false);
+  }, [pathname, setIsMobileCartOpen]);
   return (
+    
     <div
-      className={`fixed top-0 left-0 h-screen bg-white dark:bg-zinc-700 z-50 p-4 shadow-personal transition-transform duration-300 ease-in-out transform ${
-        isMobileCartOpen ? "translate-x-0 w-3/4 sm:w-1/2" : "-translate-x-full"
+      className={`fixed top-0 left-0 h-screen bg-white dark:bg-zinc-700 z-[1000] p-4 shadow-personal transition-transform duration-300 ease-in-out transform ${
+        isMobileCartOpen ? "translate-x-0 w-3/4 sm:w-1/2 " : "-translate-x-full"
       } md:w-0 md:h-0 md:overflow-hidden`}
     >
       <div className="flex  items-center justify-between  dark:text-white border-b pb-4">
-        <IoMdClose className="cursor-pointer" onClick={()=>setIsMobileCartOpen(!isMobileCartOpen)}/>
-        <span>سبد خرید</span>
-      </div>
-      <div className="flex mt-4 ">
-        <img
-          className="w-20 h-28"
-          src="/public/images/products/black-600.jpg"
-          alt=""
+        <IoMdClose
+          className="cursor-pointer"
+          onClick={() => setIsMobileCartOpen(false)}
         />
-        <div className="flex flex-col mr-4 max-w-44">
-          <h4 className=" font-vazir dark:text-gray-100 mb-6 text-base line-clamp-2  ">
-            قهوه اسپرسو بن مانو 250 گرمی
-          </h4>
-          <div>
-            <p className="text-green-400 text-[10px] tracking-wider">
-              17500 تومان تخفیف
-            </p>
-            <div className="mt-2 dark:text-white ">
-              <span className="font-semibold text-[14px] tracking-wider ">
-                196000
-              </span>
-              <span className="pr-1">تومان</span>
-            </div>
-          </div>
-        </div>
+        <h3 className="text-lg font-vazirBold">سبد خرید</h3>
       </div>
-      <div className=" absolute left-0 w-full bottom-0 items-center justify-between mt-2 border-t border-gray-200 dark:border-gray-600 p-4 ">
-        <div className="flex items-center justify-between dark:text-white">
-          <div>
-            <span className="opacity-50 text-[10px]">مبلغ قابل پرداخت</span>
-            <p className="font-semibold text-sm tracking-wider">350000 تومان</p>
+      <div className="flex flex-col  w-full ">
+        <div className="overflow-y-scroll h-[33rem] pl-2">
+          {cart.map((item) => (
+            <div
+              className="flex gap-x-2 dark:bg-zinc-500 mb-4 rounded-md overflow-hidden border-b-2"
+              key={item.id}
+            >
+              <div className="w-40 h-auto">
+                <img className="w-full h-full" src={item.image} />
+              </div>
+              <div className="flex flex-col gap-y-2 p-2">
+                <h3>{item.name}</h3>
+
+                <p className="pb-2 text-green-400">
+                  {item.price}
+                  <span className="text-s pr-1">تومان</span>
+                </p>
+                <div className="flex justify-between items-center">
+                  <div className="flex gap-x-2 ">
+                    <button
+                      onClick={() => addToCart(item)}
+                      className="flex items-center justify-center text-lg bg-slate-300 text-black px-3 rounded-md"
+                    >
+                      +
+                    </button>
+                    <p className="flex items-center justify-center bg-slate-300 text-black px-3 rounded-md ">
+                      {item.quantity}
+                    </p>
+                    <button
+                      onClick={() => decreaseQuantity(item.id)}
+                      className="flex items-center justify-center text-lg bg-slate-300 text-black px-3 rounded-md"
+                    >
+                      -
+                    </button>
+                  </div>
+                  <MdDeleteOutline
+                    className="text-red-500 text-lg cursor-pointer"
+                    onClick={() => removeFromCart(item.id)}
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="flex items-center justify-between py-4 border-t-4">
+          <div className="flex items-center gap-x-1 text-lg">
+            <p>قیمت کل : </p>
+            <p>
+              {totalPrice}
+              <span className="text-sm text-green-400">تومان</span>{" "}
+            </p>
           </div>
-          <button className="bg-green-400 dark:bg-emerald-500 dark:hover:bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-teal-700">
-            ثبت سفارش
+          <button className="bg-orange-400 py-2 px-6 rounded-md text-lg">
+            پرداخت
           </button>
         </div>
       </div>

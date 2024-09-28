@@ -1,7 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { IoMdClose } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { IoHomeOutline } from "react-icons/io5";
 import { BsHandbag } from "react-icons/bs";
@@ -23,6 +23,13 @@ export default function Sidebar() {
   const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
   const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
   console.log(setIsSidebarOpen, isSidebarOpen);
+  const { pathname } = useLocation();
+  console.log(pathname);
+
+  useEffect(() => {
+    setIsSidebarOpen(false);
+  }, [pathname, setIsSidebarOpen]);
+
   return (
     <div
       className={`fixed top-0 right-0 h-screen bg-white dark:bg-zinc-700 z-50 p-4 shadow-personal transition-transform duration-300 ease-in-out transform ${

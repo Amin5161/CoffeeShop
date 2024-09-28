@@ -98,18 +98,18 @@ export default function Registration() {
   };
 
   return (
-    <div className="mt-40 mb-40 ">
+    <div className="pt-40 pb-40 dark:bg-zinc-500">
       <div className="container">
         {!isLogin ? (
           <form
             onSubmit={handleSubmit}
             action=""
-            className="max-w-[30rem] min-h-72  p-4 mx-auto shadow-personal rounded-md dark:bg-zinc-600 dark:text-white"
+            className="max-w-[30rem] min-h-72  p-4 mx-auto shadow-personal rounded-md dark:bg-zinc-600 "
           >
             <h3>حساب کاربری</h3>
 
             <input
-              className="w-full bg-slate-200 p-2 mt-4 rounded-md dark:bg-zinc-400"
+              className="w-full bg-slate-200 text-black p-2 mt-4 rounded-md dark:text-black"
               type="text"
               name="name"
               id="firstname"
@@ -120,7 +120,7 @@ export default function Registration() {
             {errors.name && <p className="text-red-500">{errors.name}</p>}
 
             <input
-              className="w-full bg-slate-200 p-2 rounded-md mt-4 dark:bg-zinc-400"
+              className="w-full bg-slate-200 p-2 rounded-md mt-4 "
               type="text"
               placeholder="نام خانوادگی"
               id="lastname"
@@ -134,7 +134,7 @@ export default function Registration() {
             )}
 
             <input
-              className="w-full bg-slate-200 p-2 rounded-md mt-4 dark:bg-zinc-400 "
+              className="w-full bg-slate-200 p-2 rounded-md mt-4  "
               type="email"
               name="email"
               id="email"
@@ -146,7 +146,7 @@ export default function Registration() {
             {errors.email && <p className="text-red-500">{errors.email}</p>}
 
             <input
-              className="w-full bg-slate-200 p-2 rounded-md mt-4 dark:bg-zinc-400"
+              className="w-full bg-slate-200 p-2 rounded-md mt-4 "
               type="number"
               name="phone"
               id="phone"
@@ -162,7 +162,7 @@ export default function Registration() {
               name="password"
               id="pass"
               placeholder="گذرواژه"
-              className="w-full bg-slate-200 p-2 rounded-md mt-4 dark:bg-zinc-400"
+              className="w-full bg-slate-200 p-2 rounded-md mt-4 "
               value={formData.password || ""}
               onChange={handleChange}
             />
@@ -174,7 +174,7 @@ export default function Registration() {
               name="passrepeat"
               id=""
               placeholder="تکرار گذرواژه"
-              className="w-full bg-slate-200 p-2 rounded-md mt-4 dark:bg-zinc-400"
+              className="w-full bg-slate-200 p-2 rounded-md mt-4 "
               onChange={handleChange}
               value={formData.passrepeat || ""}
             />
