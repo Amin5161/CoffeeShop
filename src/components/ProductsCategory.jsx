@@ -13,7 +13,10 @@ export default function ProductsCategory() {
       if (snapshot.empty) {
         console.log("No matching documents.");
       } else {
-        const dataArray = snapshot.docs.map((doc) => doc.data().Accessories);
+        const dataArray = snapshot.docs.map((doc) => ({
+          id: doc.id, 
+          ...doc.data().Accessories,
+        }));
         setData(dataArray.flat());
         setIsLoading(false);
       }
@@ -24,7 +27,9 @@ export default function ProductsCategory() {
   return (
     <section className="mt-12">
       {isLoading ? (
-        <div className="w-full text-center mx-auto text-xl dark:text-white">Loading...</div>
+        <div className="w-full text-center mx-auto text-xl dark:text-white">
+          Loading...
+        </div>
       ) : (
         <div className="container flex items-center justify-center md:justify-between flex-wrap gap-4 sm:w-3/4 mx-auto dark:text-white">
           {data.map((item) => (
@@ -33,7 +38,6 @@ export default function ProductsCategory() {
               <span className="pt-4"> {item.name}</span>
             </Link>
           ))}
-          
         </div>
       )}
     </section>
