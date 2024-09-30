@@ -8,7 +8,7 @@ export default function CoffeeClub() {
           <div className="flex items-center w-full gap-x-4">
             <img
               className="w-16 md:w-16 sm:w-20 lg:w-24 lg:h-24 xl:h-28 xl:w-28"
-              src="/public/images/—Pngtree—orange diamond decoration illustration_4736309 (1).png"
+              src="images/—Pngtree—orange diamond decoration illustration_4736309 (1).png"
               alt=""
             />
             <div className="w-full">
@@ -22,7 +22,7 @@ export default function CoffeeClub() {
             <div className="flex w-full gap-x-4 justify-between sm:w-2/3 ">
               <div className="flex items-center justify-center flex-col h-16 min-w-16  bg-white sm:h-20 sm:w-20 md:w-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24  rounded-xl xl:gap-4">
                 <img
-                  src="/public/images/64_CoffeeClub-2/Discovery.svg"
+                  src="images/64_CoffeeClub-2/Discovery.svg"
                   alt=""
                   className="w-8 lg:w-10"
                 />
@@ -32,7 +32,7 @@ export default function CoffeeClub() {
               </div>
               <div className="flex items-center justify-center flex-col h-16 min-w-16  bg-white sm:h-20 sm:w-20 md:w-16 md:h-20 lg:w-20 lg:h-20 xl:w-24 xl:h-24 rounded-xl xl:gap-4">
                 <img
-                  src="/public/images/64_CoffeeClub-2/Activity.svg"
+                  src="images/64_CoffeeClub-2/Activity.svg"
                   alt=""
                   className="w-8 lg:w-10"
                 />
@@ -42,7 +42,7 @@ export default function CoffeeClub() {
               </div>
               <div className="flex items-center justify-center flex-col h-16 min-w-16 bg-white sm:h-20 sm:w-20 md:w-16 md:h-20 lg:w-20 lg:h-20 xl:w-24 xl:h-24 rounded-xl xl:gap-4">
                 <img
-                  src="/public/images/64_CoffeeClub-2/Ticket Star.svg"
+                  src="images/64_CoffeeClub-2/Ticket Star.svg"
                   alt=""
                   className="w-8 lg:w-10"
                 />
