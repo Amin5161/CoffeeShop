@@ -13,10 +13,13 @@ export default function ProductsCategory() {
       if (snapshot.empty) {
         console.log("No matching documents.");
       } else {
-        const dataArray = snapshot.docs.map((doc) => ({
-          id: doc.id, 
-          ...doc.data().Accessories,
-        }));
+        const dataArray = snapshot.docs.map((doc) => {
+          const accessories = doc.data().Accessories || [];
+          return accessories.map((item) => ({
+            id: doc.id, 
+            ...item,
+          }));
+        });
         setData(dataArray.flat());
         setIsLoading(false);
       }
