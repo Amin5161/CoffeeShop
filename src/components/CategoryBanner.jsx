@@ -6,7 +6,7 @@ export default function CategoryBanner() {
       <div className="container sm:w-3/4 mx-auto ">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-8">
           <div
-            className="bg-[url('public/images/fresh-coffee-steams-wooden-table-close-up-generative-ai_188544-8923.jpggit')]
+            className="bg-[url('public/images/fresh-coffee-steams-wooden-table-close-up-generative-ai_188544-8923.jpg')]
                  h-52 shadow-personal object-contain bg-center rounded-md overflow-hidden p-8 text-white flex flex-col justify-center"
           >
             <h3 className="text-2xl pb-4">انواع قهوه</h3>
