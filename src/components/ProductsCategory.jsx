@@ -1,32 +1,41 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-
+import { collection, getDocs } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { db } from "../firebase/FirebaseConfig";
 
 export default function ProductsCategory() {
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const ref = collection(db, "coffee");
+    getDocs(ref).then((snapshot) => {
+      if (snapshot.empty) {
+        console.log("No matching documents.");
+      } else {
+        const dataArray = snapshot.docs.map((doc) => doc.data().Accessories);
+        setData(dataArray.flat());
+        setIsLoading(false);
+      }
+    });
+  }, []);
+  console.log(data);
+
   return (
     <section className="mt-12">
-          <div className="container flex items-center justify-center md:justify-between flex-wrap gap-4 sm:w-3/4 mx-auto dark:text-white">
-            <Link className="w-28 flex flex-col  items-center  ">
-              <img src="/public/images/esperso.jfif" alt="" />
-              <span className="pt-4">قهوه اسپرسو</span>
+      {isLoading ? (
+        <div className="w-full text-center mx-auto text-xl dark:text-white">Loading...</div>
+      ) : (
+        <div className="container flex items-center justify-center md:justify-between flex-wrap gap-4 sm:w-3/4 mx-auto dark:text-white">
+          {data.map((item) => (
+            <Link key={item.id} className="w-28 flex flex-col  items-center  ">
+              <img src={item.image} alt="" />
+              <span className="pt-4"> {item.name}</span>
             </Link>
-            <Link className="w-28 flex flex-col items-center  ">
-              <img src="/public/images/تست.jpg" alt="" />
-              <span className="pt-4">پک تستر قهوه</span>
-            </Link>
-            <Link className="w-28 flex flex-col items-center  ">
-              <img src="/public/images/موکاپات.jpg" alt="" />
-              <span className="pt-4">لوازم جانبی و تجهیزات</span>
-            </Link>
-            <Link className="w-28 flex flex-col items-center  ">
-              <img src="/public/images/قهوه ساز.jpg" alt="" />
-              <span className="pt-4">قهوه ساز</span>
-            </Link>
-            <Link className="w-28 flex flex-col items-center  ">
-              <img src="/public/images/ترک.jpg" alt="" />
-              <span>قهوه ترک</span>
-            </Link>
-          </div>
-        </section>
-  )
+          ))}
+          
+        </div>
+      )}
+    </section>
+  );
 }
