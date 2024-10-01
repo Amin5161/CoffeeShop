@@ -18,7 +18,11 @@ export default function Article({ article }) {
       <hr />
       <div className="sm:flex xs:gap-x-4  py-4">
         <div className="flex items-center  justify-center w-full overflow-hidden">
-          <img className="rounded-xl w-full h-full" src={article.image} alt="sperso" />
+          <img
+            className="rounded-xl w-full h-full"
+            src={article.image}
+            alt="sperso"
+          />
         </div>
         <p className="text-justify pt-4">{article.caption}</p>
       </div>
