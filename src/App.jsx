@@ -31,8 +31,8 @@ export default function App() {
               <Routes>
                 <Route index element={<HomeComponent />} />
                 <Route path="/" element={<Layout />}>
-                  <Route path="contact" element={<ContactUs />} />
-                  <Route path="about" element={<About />} />
+                  <Route path="/contact" element={<ContactUs />} />
+                  <Route path="/about" element={<About />} />
                   <Route path="/blog" element={<Blog />} />
                   <Route path="/shop" element={<Shop />} />
                   <Route path="login" element={<Login />} />

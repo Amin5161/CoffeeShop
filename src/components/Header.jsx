@@ -105,7 +105,7 @@ export default function Header() {
                   color: isActive ? "#ecc378" : "",
                 };
               }}
-              to="/aboutus"
+              to="/about"
             >
               درباره ما
             </NavLink>
@@ -117,7 +117,7 @@ export default function Header() {
                   color: isActive ? "#ecc378" : "",
                 };
               }}
-              to="/contactus"
+              to="/contact"
             >
               تماس با ما
             </NavLink>
