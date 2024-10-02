@@ -41,10 +41,10 @@ export default function RedingMaterial() {
           </span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pt-4 md:pt-8 ">
-          {data.map((item) => {
+          {data.map((item, index) => {
             return (
               <div
-                key={item.key}
+                key={item.key || index}
                 className="flex flex-col justify-between w-full h-56  md:w-50 shadow-personal rounded-md overflow-hidden p-2 dark:bg-zinc-600"
               >
                 <img

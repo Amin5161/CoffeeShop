@@ -13,16 +13,21 @@ export default function Products() {
 
   useEffect(() => {
     const ref = collection(db, "coffee");
-    getDocs(ref).then((snapshot) => {
-      if (snapshot.empty) {
-        console.log("No matching documents.");
-      } else {
-        const productsArray = snapshot.docs.map((doc) => doc.data().products);
+    getDocs(ref)
+      .then((snapshot) => {
+        if (snapshot.empty) {
+          console.log("No matching documents.");
+        } else {
+          const productsArray = snapshot.docs.map((doc) => doc.data().products);
 
-        setProducts(productsArray.flat());
-      }
-      setIsLoading(false);
-    });
+          setProducts(productsArray.flat());
+        }
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching products: ", error);
+        setIsLoading(false); // اگر خطایی رخ دهد لودینگ غیر فعال شود
+      });
   }, []);
   console.log(products);
 
@@ -66,7 +71,7 @@ export default function Products() {
                         />
                       </div>
                       <div className="flex flex-col justify-between p-2 dark:bg-zinc-600 ">
-                        <p className="text-sm sm:text-base dark:text-white">
+                        <p className="text-sm font-vazirBold sm:text-base dark:text-white">
                           {product.name}
                         </p>
                         <span className="text-green-500 pt-2 text-sm">

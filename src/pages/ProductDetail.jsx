@@ -1,9 +1,10 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FaHourglassEnd } from "react-icons/fa";
 import { IoCartOutline } from "react-icons/io5";
 import { useCart } from "../components/Context/CartContext";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase/FirebaseConfig";
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -11,19 +12,36 @@ export default function ProductDetail() {
   const [count, setCount] = useState(1);
   const { addToCart } = useCart();
   useEffect(() => {
-    const fetchDetail = async () => {
+    const fetchProducts = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:3000/products/${id}`
-        );
-        setProduct(response.data);
-        console.log(response.data);
+        // به دست آوردن مرجع سند مورد نظر
+        const coffeeRef = doc(db, "coffee", "yStyU3KCLycS0v0rp0Nc"); // شناسه سند را در اینجا قرار دهید
+        const coffeeSnap = await getDoc(coffeeRef); // استفاده از getDoc برای یک سند
+
+        if (coffeeSnap.exists()) {
+          const coffeeData = coffeeSnap.data();
+          // جستجوی محصول بر اساس id
+          const foundProduct = coffeeData.products.find(
+            (product) => product.id === id
+          );
+
+          if (foundProduct) {
+            setProduct(foundProduct);
+          } else {
+            console.log("Product not found");
+          }
+        } else {
+          console.log("No such document");
+        }
       } catch (error) {
-        console.log("error fetching Product details", error);
+        console.error("Error fetching products: ", error);
       }
     };
-    fetchDetail();
+
+    fetchProducts();
   }, [id]);
+
+  console.log(product);
 
   if (!product) {
     return <div>Loding...</div>;
@@ -35,7 +53,7 @@ export default function ProductDetail() {
           <div className="grid grid-cols-12 ">
             <div className="grid col-span-4">
               <img
-                src={product.image}
+                src={`/${product.image}`}
                 alt={product.name}
                 className="w-full object-cover"
               />
@@ -50,11 +68,11 @@ export default function ProductDetail() {
               <div className="pt-12 ">
                 <div className="flex items-start gap-x-2 ">
                   <FaHourglassEnd />
-                  <p className="text-sm">{product.send}</p>
+                  <p className="text-sm">ارسال مرسوله های بالاتر از 500 هزار تومان فقط در شهر تهران رایگان خواهد بود</p>
                 </div>
                 <div className="flex items-start gap-x-2 pt-4">
                   <IoCartOutline />
-                  <p className="text-sm">{product.howtobuy}</p>
+                  <p className="text-sm"> خرید آنلاین با استفاده از درگاه های امن</p>
                 </div>
               </div>
               <div className="pt-4 flex items-center  gap-x-4">
@@ -92,7 +110,7 @@ export default function ProductDetail() {
           </div>
           <div className="grid grid-cols-12  p-4 bg-white dark:bg-zinc-600 dark:text-white ">
             <h2 className="font-vazirBold text-lg col-span-4">توضیحات محصول</h2>
-            <p className="pt-2 col-span-12">{product.description}</p>
+            <p className="pt-2 col-span-12"> متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
           </div>
         </div>
       </div>

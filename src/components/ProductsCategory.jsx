@@ -35,8 +35,8 @@ export default function ProductsCategory() {
         </div>
       ) : (
         <div className="container flex items-center justify-center md:justify-between flex-wrap gap-4 sm:w-3/4 mx-auto dark:text-white">
-          {data.map((item) => (
-            <Link key={item.id} className="w-28 flex flex-col  items-center  ">
+          {data.map((item ,index) => (
+            <Link key={`${item.id}-${index}`} className="w-28 flex flex-col  items-center  ">
               <img src={item.image} alt="" />
               <span className="pt-4"> {item.name}</span>
             </Link>

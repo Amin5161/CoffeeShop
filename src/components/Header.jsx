@@ -129,11 +129,11 @@ export default function Header() {
       <div className="hidden md:flex items-center gap-x-4">
         <div className="flex items-center gap-x-2  ">
           <div
-            className="relative group flex items-center"
+            className="relative flex items-center"
             aria-label="Shopping Cart"
           >
             {/* سبد خرید */}
-            <div className="relative ">
+            <div className="relative group">
               <IoCartOutline
                 onClick={() => navigate("/cart")}
                 className="text-3xl text-[#ecc378] cursor-pointer "
@@ -143,72 +143,78 @@ export default function Header() {
               border-t-4 child:inline-block border-orange-300 transition-all delay-75"
               >
                 <div className="flex items-center justify-center  w-full ">
-                  <div className="flex items-start justify-between w-full pb-4">
-                    <span className="text-[14px]">1مورد</span>
-                    <div className="flex items-center gap-x-2 text-orange-300">
-                      <Link className="tracking-tighter text-[14px]">
-                        مشاهده سبد خرید
-                      </Link>
-                      <IoIosArrowBack />
-                    </div>
-                  </div>
-
-                  <div className="overflow-y-scroll h-96 pl-2">
-                    {cart.map((item) => (
-                      <div
-                        className="flex gap-x-2 dark:bg-zinc-500 mb-4 rounded-md overflow-hidden shadow-personal"
-                        key={item.id}
-                      >
-                        <div className="w-40 h-auto">
-                          <img className="w-full h-full" src={item.image} />
-                        </div>
-                        <div className="flex flex-col gap-y-2 p-2">
-                          <h3>{item.name}</h3>
-
-                          <p className="pb-2 text-green-400">
-                            {item.price}
-                            <span className="text-s pr-1">تومان</span>
-                          </p>
-                          <div className="flex justify-between items-center">
-                            <div className="flex gap-x-2 ">
-                              <button
-                                onClick={() => addToCart(item)}
-                                className="flex items-center justify-center text-lg bg-slate-300 text-black px-3 rounded-md"
-                              >
-                                +
-                              </button>
-                              <p className="flex items-center justify-center bg-slate-300 text-black px-3 rounded-md ">
-                                {item.quantity}
-                              </p>
-                              <button
-                                onClick={() => decreaseQuantity(item.id)}
-                                className="flex items-center justify-center text-lg bg-slate-300 text-black px-3 rounded-md"
-                              >
-                                -
-                              </button>
-                            </div>
-                            <MdDeleteOutline
-                              className="text-red-500 text-lg cursor-pointer"
-                              onClick={() => removeFromCart(item.id)}
-                            />
-                          </div>
+                  {cart.length > 0 ? (
+                    <>
+                      <div className="flex items-start justify-between w-full pb-4">
+                        <span className="text-[14px]">{totalItems} مورد</span>
+                        <div className="flex items-center gap-x-2 text-orange-300">
+                          <Link className="tracking-tighter text-[14px]">
+                            مشاهده سبد خرید
+                          </Link>
+                          <IoIosArrowBack />
                         </div>
                       </div>
-                    ))}
-                  </div>
-                  <div className="flex justify-between p-2">
-                    <div className="flex items-center gap-x-1 text-lg">
-                      <p>قیمت کل : </p>
-                      <p>
-                        {" "}
-                        {totalPrice}{" "}
-                        <span className="text-sm text-green-400">تومان</span>{" "}
-                      </p>
-                    </div>
-                    <button className="bg-orange-400 py-2 px-6 rounded-md text-lg">
-                      پرداخت
-                    </button>
-                  </div>
+                      <div className="overflow-y-scroll h-96 pl-2">
+                        {cart.map((item) => (
+                          <div
+                            className="flex gap-x-2 dark:bg-zinc-500 mb-4 rounded-md overflow-hidden shadow-personal"
+                            key={item.id}
+                          >
+                            <div className="w-40 h-auto">
+                              <img className="w-full h-full" src={item.image} />
+                            </div>
+                            <div className="flex flex-col gap-y-2 p-2">
+                              <h3>{item.name}</h3>
+
+                              <p className="pb-2 text-green-400">
+                                {item.price}
+                                <span className="text-s pr-1">تومان</span>
+                              </p>
+                              <div className="flex justify-between items-center">
+                                <div className="flex gap-x-2 ">
+                                  <button
+                                    onClick={() => addToCart(item)}
+                                    className="flex items-center justify-center text-lg bg-slate-300 text-black px-3 rounded-md"
+                                  >
+                                    +
+                                  </button>
+                                  <p className="flex items-center justify-center bg-slate-300 text-black px-3 rounded-md ">
+                                    {item.quantity}
+                                  </p>
+                                  <button
+                                    onClick={() => decreaseQuantity(item.id)}
+                                    className="flex items-center justify-center text-lg bg-slate-300 text-black px-3 rounded-md"
+                                  >
+                                    -
+                                  </button>
+                                </div>
+                                <MdDeleteOutline
+                                  className="text-red-500 text-lg cursor-pointer"
+                                  onClick={() => removeFromCart(item.id)}
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="flex justify-between p-2">
+                        <div className="flex items-center gap-x-1 text-lg">
+                          <p>قیمت کل : </p>
+                          <p>
+                            {totalPrice}
+                            <span className="text-sm text-green-400">
+                              تومان
+                            </span>
+                          </p>
+                        </div>
+                        <button className="bg-orange-400 py-2 px-6 rounded-md text-lg">
+                          پرداخت
+                        </button>
+                      </div>
+                    </>
+                  ) : (
+                    <p className="text-red-500">سبد خرید شما خالی است</p>
+                  )}
                 </div>
               </div>
               {totalItems > 0 && (
@@ -239,7 +245,7 @@ export default function Header() {
               <HiArrowRightOnRectangle className="text-2xl text-[#ecc378]" />
             </span>
             {user ? (
-              <Link to='adminpanel'>
+              <Link to="adminpanel">
                 <p className="text-white">{user.name}</p>
               </Link>
             ) : (

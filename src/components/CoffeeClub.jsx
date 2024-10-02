@@ -4,7 +4,7 @@ export default function CoffeeClub() {
   return (
     <section className="my-20">
       <div className="container sm:w-3/4 ">
-        <div className=" flex flex-wrap gap-y-8 items-center md:flex-nowrap  md:flex-row  justify-between md:h-36 rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-600 gap-x-2 md:p-3 xl:px-11 p-4">
+        <div className=" flex flex-wrap gap-y-8 items-center lg:flex-nowrap  lg:flex-row  justify-between lg:h-36 rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-600 gap-x-2 md:p-3 xl:px-11 p-4">
           <div className="flex items-center w-full gap-x-4">
             <img
               className="w-16 md:w-16 sm:w-20 lg:w-24 lg:h-24 xl:h-28 xl:w-28"
@@ -20,7 +20,7 @@ export default function CoffeeClub() {
           </div>
           <div className="flex flex-wrap justify-center sm:justify-around w-full gap-y-4 gap-x-2 items-center sm:flex-nowrap md:gap-x-5 lg:gap-x-10">
             <div className="flex w-full gap-x-4 justify-between sm:w-2/3 ">
-              <div className="flex items-center justify-center flex-col h-16 min-w-16  bg-white sm:h-20 sm:w-20 md:w-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24  rounded-xl xl:gap-4">
+              <div className="flex items-center justify-center flex-col h-16 min-w-16  bg-white sm:h-20 sm:w-20 md:w-24 lg:w-20 lg:h-20 xl:w-24 xl:h-24  rounded-xl xl:gap-4">
                 <img
                   src="images/64_CoffeeClub-2/Discovery.svg"
                   alt=""
@@ -30,7 +30,7 @@ export default function CoffeeClub() {
                   چرخ و بخت
                 </p>
               </div>
-              <div className="flex items-center justify-center flex-col h-16 min-w-16  bg-white sm:h-20 sm:w-20 md:w-16 md:h-20 lg:w-20 lg:h-20 xl:w-24 xl:h-24 rounded-xl xl:gap-4">
+              <div className="flex items-center justify-center flex-col h-16 min-w-16  bg-white sm:h-20 sm:w-20 md:w-24 md:h-20 lg:w-20 lg:h-20 xl:w-24 xl:h-24 rounded-xl xl:gap-4">
                 <img
                   src="images/64_CoffeeClub-2/Activity.svg"
                   alt=""
@@ -40,7 +40,7 @@ export default function CoffeeClub() {
                   چرخ و بخت
                 </p>
               </div>
-              <div className="flex items-center justify-center flex-col h-16 min-w-16 bg-white sm:h-20 sm:w-20 md:w-16 md:h-20 lg:w-20 lg:h-20 xl:w-24 xl:h-24 rounded-xl xl:gap-4">
+              <div className="flex items-center justify-center flex-col h-16 min-w-16 bg-white sm:h-20 sm:w-20 md:w-24 md:h-20 lg:w-20 lg:h-20 xl:w-24 xl:h-24 rounded-xl xl:gap-4">
                 <img
                   src="images/64_CoffeeClub-2/Ticket Star.svg"
                   alt=""

@@ -27,9 +27,11 @@ export default function Blog() {
 
   return (
     <section className=" bg-slate-300 flex dark:bg-zinc-700 items-center justify-center">
-      <div className="container sm:w-2/3 ">
+      <div className="container mx-auto sm:w-2/3 ">
         {isLoading ? (
-          <p>Loading...</p>
+          <p className="w-full text-center mx-auto text-xl dark:text-white">
+            Loading...
+          </p>
         ) : (
           <div className="pt-20 md:pt-40  mb-20">
             <div className="grid grid-cols-1 gap-y-8 ">
