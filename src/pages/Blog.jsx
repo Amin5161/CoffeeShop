@@ -36,9 +36,9 @@ export default function Blog() {
           <div className="pt-20 md:pt-40  mb-20">
             <div className="grid grid-cols-1 gap-y-8 ">
               {articles.length > 0 ? (
-                articles.map((article) => (
+                articles.map((article, index) => (
                   <div
-                    key={article.id}
+                    key={article.id || index}
                     className="shadow-personal w-auto flex flex-col justify-between
        md:h-80 xl:h-[22rem] mx-auto p-4 rounded-lg bg-white dark:bg-zinc-600 dark:text-white"
                   >
