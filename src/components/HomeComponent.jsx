@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-
+import { useState } from "react";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import MobileCart from "./MobileCart";
@@ -14,7 +13,7 @@ import Slider from "./Slider";
 
 function HomeComponent() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
+  
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
@@ -24,6 +23,7 @@ function HomeComponent() {
     console.log("تغییر وضعیت سبد خرید");
     setIsMobileCartOpen(!isMobileCartOpen);
   };
+  
 
   return (
     <div className="font-vazir bg-slate-50 dark:bg-zinc-800 flex flex-col min-h-screen">
@@ -32,10 +32,11 @@ function HomeComponent() {
           <Header
             toggleSidebar={toggleSidebar}
             handleCartClick={handleCartClick}
+            
           />
           <Sidebar />
           <MobileCart
-          isMobileCartOpen={isMobileCartOpen}
+            isMobileCartOpen={isMobileCartOpen}
             handleCartClick={handleCartClick}
           />
         </header>

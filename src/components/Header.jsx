@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo } from "react";
+import { useContext, useMemo } from "react";
 import { IoCartOutline } from "react-icons/io5";
 import { CiDark } from "react-icons/ci";
 import { Link, NavLink, useNavigate } from "react-router-dom";
@@ -13,6 +13,7 @@ import { MdDeleteOutline } from "react-icons/md";
 import logo from "/public/images/app-logo-type.svg";
 import { SidebarContext } from "./Context/SidebarContext";
 import { MobileCartContext } from "./Context/MobileCartContext";
+import SearchBar from "./SearchBar";
 
 export default function Header() {
   const { user } = useContext(UserContext);
@@ -124,6 +125,46 @@ export default function Header() {
           </li>
         </ul>
       </nav>
+
+      {/* منو همبرگر موبایل */}
+      <div className="flex md:hidden  h-8 items-center">
+        <RxHamburgerMenu
+          className="text-3xl text-zinc-700 dark:text-white cursor-pointer "
+          onClick={() => {
+            setIsSidebarOpen(true), setIsMobileCartOpen(false);
+          }}
+        />
+      </div>
+
+      {/* لگو */}
+      <div className="md:hidden h-8 w-[100px]">
+        <img src={logo} alt="logo type" className="h-full w-full" />
+      </div>
+
+      <div className="flex gap-x-2 items-center">
+
+        <SearchBar />
+
+        {/* سبد خرید موبایل */}
+        <div
+          className="relative group md:hidden h-8"
+          aria-label="Shopping Cart"
+        >
+          <IoCartOutline
+            onClick={() => {
+              setIsMobileCartOpen(true), setIsSidebarOpen(false);
+            }}
+            className="md:hidden text-3xl text-zinc-700 dark:text-white md:text-[#ecc378] cursor-pointer"
+          />
+          {totalItems > 0 && (
+            <span className="absolute -top-2 -left-2 bg-red-500 rounded-full px-2 text-white text-sm">
+              {totalItems}
+            </span>
+          )}
+        </div>
+
+      </div>
+
 
       {/* هدر دسکتاپ چپ*/}
       <div className="hidden md:flex items-center gap-x-4">
@@ -255,36 +296,6 @@ export default function Header() {
             )}
           </div>
         </div>
-      </div>
-
-      {/* منو همبرگر موبایل */}
-      <div className="flex md:hidden  h-8 items-center">
-        <RxHamburgerMenu
-          className="text-3xl text-zinc-700 dark:text-white cursor-pointer "
-          onClick={() => {
-            setIsSidebarOpen(true), setIsMobileCartOpen(false);
-          }}
-        />
-      </div>
-
-      {/* لگو */}
-      <div className="md:hidden h-8 w-[100px]">
-        <img src={logo} alt="logo type" className="h-full w-full" />
-      </div>
-
-      {/* سبد خرید موبایل */}
-      <div className="relative group md:hidden h-8" aria-label="Shopping Cart">
-        <IoCartOutline
-          onClick={() => {
-            setIsMobileCartOpen(true), setIsSidebarOpen(false);
-          }}
-          className="md:hidden text-3xl text-zinc-700 dark:text-white md:text-[#ecc378] cursor-pointer"
-        />
-        {totalItems > 0 && (
-          <span className="absolute -top-2 -left-2 bg-red-500 rounded-full px-2 text-white text-sm">
-            {totalItems}
-          </span>
-        )}
       </div>
     </div>
   );

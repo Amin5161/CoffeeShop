@@ -49,16 +49,16 @@ export default function ProductDetail() {
   return (
     <div className="bg-slate-300 dark:bg-zinc-800  flex items-start justify-center">
       <div className="container pt-32 pb-20">
-        <div className="bg-white dark:bg-zinc-600 dark:text-white w-full p-4 shadow-personal  rounded-mda">
-          <div className="grid grid-cols-12 ">
-            <div className="grid col-span-4">
+        <div className="bg-white dark:bg-zinc-600 dark:text-white w-full p-4 shadow-personal rounded-md">
+          <div className="grid grid-cols-12">
+            <div className="grid col-span-12 sm:col-span-5 rounded-md overflow-hidden ">
               <img
                 src={`/${product.image}`}
                 alt={product.name}
-                className="w-full object-cover"
+                className="w-full h-full object-cover rounded-md"
               />
             </div>
-            <div className="bg-[#ebeaea] dark:bg-zinc-600  p-4 grid col-span-8">
+            <div className="bg-[#ebeaea] dark:bg-zinc-600 grid col-span-12 sm:col-span-6 pt-8 sm:pt-0 sm:mr-8">
               <h1 className="border-b-2 font-vazirBold text-xl">
                 {product.name}
               </h1>
@@ -82,13 +82,13 @@ export default function ProductDetail() {
                   </p>
                   <div className="flex flex-col gap-1">
                     <button
-                      className="px-1 text-lg bg-zinc-600 text-white dark:bg-white dark:text-black rounded-t-md"
+                      className="px-1 text-base bg-zinc-600 text-white dark:bg-white dark:text-black rounded-tl-md"
                       onClick={() => setCount(count + 1)}
                     >
                       +
                     </button>
                     <button
-                      className="px-1 text-xl bg-zinc-600 text-white rounded-b-md dark:bg-white dark:text-black"
+                      className="px-1 text-xl bg-zinc-600 text-white rounded-bl-md dark:bg-white dark:text-black"
                       onClick={() => count > 1 && setCount(count - 1)}
                     >
                       -
@@ -109,7 +109,7 @@ export default function ProductDetail() {
             </div>
           </div>
           <div className="grid grid-cols-12  p-4 bg-white dark:bg-zinc-600 dark:text-white ">
-            <h2 className="font-vazirBold text-lg col-span-4">توضیحات محصول</h2>
+            <h2 className="font-vazirBold text-lg col-span-8">توضیحات محصول</h2>
             <p className="pt-2 col-span-12"> متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
           </div>
         </div>

@@ -1,34 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 import { IoCartOutline } from "react-icons/io5";
 import { GoArrowSwitch } from "react-icons/go";
 import BasicRating from "./BasicRating";
 import { useCart } from "./Context/CartContext";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../firebase/FirebaseConfig";
+import { ProductsContext } from "./Context/ProductsContext";
 export default function Products() {
-  const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const ref = collection(db, "coffee");
-    getDocs(ref)
-      .then((snapshot) => {
-        if (snapshot.empty) {
-          console.log("No matching documents.");
-        } else {
-          const productsArray = snapshot.docs.map((doc) => doc.data().products);
-
-          setProducts(productsArray.flat());
-        }
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching products: ", error);
-        setIsLoading(false); // اگر خطایی رخ دهد لودینگ غیر فعال شود
-      });
-  }, []);
+  const { products, isLoading } = useContext(ProductsContext);
   console.log(products);
 
   const { cart, addToCart } = useCart();
