@@ -1,39 +1,33 @@
-import axios from "axios";
-import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../components/Context/UserContext";
+import { LoginUser } from "../firebase/LoginUser";
 
 export default function Login() {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const { setUser } = useContext(UserContext);
 
   const navigate = useNavigate();
 
-  const handleChangeLoginForm = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-    console.log(formData);
-  };
-
   const handleLoginFormSubmit = async (e) => {
     e.preventDefault();
-    const response = await axios.get("http://localhost:3000/users");
-    console.log(response.data);
-    const users = response.data;
-    const user = users.find(
-      (user) =>
-        user.email === formData.email && user.password === formData.password
-    );
-    if (user) {
+    setLoading(true);
+    setError(null);
+    try {
+      const user = await LoginUser(email, password);
+      console.log("User logged : ", user.displayName);
+      navigate("/");
       alert("ورود موفق بود");
       setUser(user);
-      navigate("/");
-    } else {
+    } catch {
       alert(" ایمیل یا گذزواژه اشتباه است");
+      setError("ایمیل یا گذزواژه اشتباه است");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -46,50 +40,42 @@ export default function Login() {
             className="max-w-[30rem] min-h-72  p-4 mx-auto shadow-personal rounded-md bg-white dark:bg-zinc-600 dark:text-white"
             onSubmit={handleLoginFormSubmit}
           >
-            <h3>حساب کاربری</h3>
+            <h3> فرم ورود</h3>
 
             <input
               className="w-full bg-slate-200 p-2 rounded-md mt-4 outline-none dark:bg-zinc-300"
               type="email"
-              name="email"
-              id=""
               placeholder="ایمیل"
-              value={formData.email || ""}
-              onChange={handleChangeLoginForm}
+              value={email || ""}
+              onChange={(e) => setEmail(e.target.value)}
+              required
             />
             <input
               type="password"
-              name="password"
-              id="pass"
               placeholder="گذرواژه"
               className="w-full bg-slate-200 p-2 rounded-md mt-4 outline-none dark:bg-zinc-300"
-              value={formData.password || ""}
-              onChange={handleChangeLoginForm}
+              value={password || ""}
+              onChange={(e) => setPassword(e.target.value)}
+              required
             />
 
             <div className="flex justify-center items-center mt-4 gap-x-4">
               <button
                 type="submit"
+                disabled={loading}
                 className="bg-orange-400 py-2 px-8 w-3/4 rounded-md "
               >
-                ورود
+                {loading ? "در حال ورود..." : "ورود"}
               </button>
-              <button
-                type="button"
+              <Link
+                to="/registration"
                 className="text-blue-500 underline dark:text-white"
-                onClick={() => {
-                  // پاکسازی فرم ثبت‌نام
-                  setFormData({
-                    email: "",
-                    pass: "",
-                  });
-                  navigate("/registration");
-                }}
               >
                 ثبت نام
-              </button>
+              </Link>
             </div>
           </form>
+          {error && <p style={{ color: "red" }}>{error}</p>}
         </div>
       </div>
     </div>

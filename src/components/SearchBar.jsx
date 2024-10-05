@@ -10,7 +10,7 @@ export default function SearchBar() {
     useContext(SearchContext);
   const navigate = useNavigate();
 
-  console.log(products);
+  // console.log(products);
   useEffect(() => {
     if (!Array.isArray(products)) return; // اگر products آرایه نباشد، کاری انجام نده
 
@@ -26,7 +26,7 @@ export default function SearchBar() {
     } else {
       setFilteredProducts([]);
     }
-    console.log(products);
+    // console.log(products);
 
     // پاکسازی debouncedSearch در هنگام unmount کامپوننت
     return () => debouncedSearch.cancel();

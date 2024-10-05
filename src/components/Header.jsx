@@ -19,7 +19,7 @@ export default function Header() {
   const { user } = useContext(UserContext);
   const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
   const navigate = useNavigate();
-
+  console.log(user);
   const { cart, totalPrice, addToCart, decreaseQuantity, removeFromCart } =
     useCart();
   const totalItems = useMemo(
@@ -142,7 +142,6 @@ export default function Header() {
       </div>
 
       <div className="flex gap-x-2 items-center">
-
         <SearchBar />
 
         {/* سبد خرید موبایل */}
@@ -162,9 +161,7 @@ export default function Header() {
             </span>
           )}
         </div>
-
       </div>
-
 
       {/* هدر دسکتاپ چپ*/}
       <div className="hidden md:flex items-center gap-x-4">
@@ -287,7 +284,7 @@ export default function Header() {
             </span>
             {user ? (
               <Link to="adminpanel">
-                <p className="text-white">{user.name}</p>
+                <p className="text-white">{user.displayName}</p>
               </Link>
             ) : (
               <Link to="/login" className="text-[#ecc378] hidden lg:flex">

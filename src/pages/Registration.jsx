@@ -1,219 +1,143 @@
-import axios from "axios";
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Login from "./Login";
+import { useState } from "react";
+import { registerUser } from "../firebase/CreateUser";
+import { Link, useNavigate } from "react-router-dom";
 
-export default function Registration() {
-  const [isLogin, setIsLogin] = useState(false);
-  const [isEmailExist, setIsEmailExist] = useState(false);
-  const [errors, setErrors] = useState({});
-  const [formData, setFormData] = useState({
-    name: "",
-    lastname: "",
-    email: "",
-    mobile: "",
-    password: "",
-  });
+export default function Register() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
 
   const navigate = useNavigate();
-
-  // چک کردن ایمیل تکراری
-
-  const checkEmailExist = async (email) => {
-    const response = await axios.get(
-      `http://localhost:3000/users?email=${email}`
-    );
-    return response.data.length > 0;
-  };
-
-  const handleChange = async (e) => {
-    const { name, value } = e.target;
-
-    // مقدار به روز رسانی شده در دسترس است
-    console.log("Current value:", value); // آخرین مقدار ورودی کاربر
-
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-
-    setErrors({ ...errors, [name]: "" });
-
-    if (name === "email") {
-      const exist = await checkEmailExist(value);
-      setIsEmailExist(exist);
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isEmailExist) {
-      alert("این ایمیل قبلا ثبت نام شده است");
+
+    if (password !== confirmPassword) {
+      setModalMessage("رمز عبور وتکرار آن باید یکسان باشد");
+      setModalVisible(true);
+      setTimeout(() => {
+        setModalVisible(false);
+      }, 3000);
       return;
     }
 
-    const validations = {};
+    const additionalData = {
+      name: name,
+      phone: phone,
+    };
 
-    if (!formData.name) {
-      validations.name = "نام الزامی است";
-    }
-    if (!formData.lastname) {
-      validations.lastname = "نام خانوادگی الزامی است";
-    }
+    setLoading(true);
+    try {
+      await registerUser(email, password, additionalData); // فراخوانی تابع ثبت‌نام
+      setModalMessage("ثبت نام شما با موفقیت انجام شد");
+      setModalVisible(true);
 
-    if (!formData.email) {
-      validations.email = "ایمیل الزامی است";
+      setTimeout(() => {
+        setModalVisible(false);
+        navigate("/login"); // هدایت کاربر به صفحه لاگین پس از موفقیت
+      }, 3000);
+    } catch (error) {
+      setError("خطا در ثبت‌نام: " + error.message);
+      setModalMessage("خطا در ثبت نام" + error.message);
+      setModalVisible(true);
+      setTimeout(() => {
+        setModalVisible(false);
+      }, 3000);
+    } finally {
+      setLoading(false);
     }
-
-    if (!formData.password) {
-      validations.password = " پسورد الزامی است ";
-    }
-
-    if (formData.password !== formData.passrepeat) {
-      validations.passrepeat = "گذرواژه‌ها با هم مطابقت ندارند";
-    }
-
-    if (!formData.passrepeat) {
-      validations.passrepeat = "تکرار پسورد الزامی است";
-    }
-
-    if (Object.keys(validations).length > 0) {
-      setErrors(validations);
-      return;
-    }
-
-    const response = await axios.post("http://localhost:3000/users", formData);
-    console.log("aded :", response.data);
-    setFormData({
-      name: "",
-      lastname: "",
-      email: "",
-      mobile: "",
-      password: "",
-      
-    });
-    setErrors({});
-    setIsEmailExist(false);
-    navigate("/login");
   };
 
   return (
     <div className="pt-40 pb-40 dark:bg-zinc-500">
       <div className="container">
-        {!isLogin ? (
-          <form
-            onSubmit={handleSubmit}
-            action=""
-            className="max-w-[30rem] min-h-72  p-4 mx-auto shadow-personal rounded-md dark:bg-zinc-600 "
-          >
-            <h3>حساب کاربری</h3>
-
-            <input
-              className="w-full bg-slate-200 text-black p-2 mt-4 rounded-md dark:text-black"
-              type="text"
-              name="name"
-              id="firstname"
-              placeholder="نام"
-              value={formData.name || ""}
-              onChange={handleChange}
-            />
-            {errors.name && <p className="text-red-500">{errors.name}</p>}
-
-            <input
-              className="w-full bg-slate-200 p-2 rounded-md mt-4 "
-              type="text"
-              placeholder="نام خانوادگی"
-              id="lastname"
-              value={formData.lastname || ""}
-              name="lastname"
-              onChange={handleChange}
-            />
-
-            {errors.lastname && (
-              <p className="text-red-500">{errors.lastname}</p>
-            )}
-
-            <input
-              className="w-full bg-slate-200 p-2 rounded-md mt-4  "
-              type="email"
-              name="email"
-              id="email"
-              placeholder=" ایمیل"
-              value={formData.email || ""}
-              onChange={handleChange}
-            />
-
-            {errors.email && <p className="text-red-500">{errors.email}</p>}
-
-            <input
-              className="w-full bg-slate-200 p-2 rounded-md mt-4 "
-              type="number"
-              name="phone"
-              id="phone"
-              placeholder="شماره موبایل(اختیاری)"
-              value={formData.mobile || ""}
-              onChange={handleChange}
-            />
-
-            {errors.mobile && <p className="text-red-500">{errors.mobile}</p>}
-
-            <input
-              type="password"
-              name="password"
-              id="pass"
-              placeholder="گذرواژه"
-              className="w-full bg-slate-200 p-2 rounded-md mt-4 "
-              value={formData.password || ""}
-              onChange={handleChange}
-            />
-
-            {errors.pass && <p className="text-red-500">{errors.pass}</p>}
-
-            <input
-              type="password"
-              name="passrepeat"
-              id=""
-              placeholder="تکرار گذرواژه"
-              className="w-full bg-slate-200 p-2 rounded-md mt-4 "
-              onChange={handleChange}
-              value={formData.passrepeat || ""}
-            />
-
-            {errors.passrepeat && (
-              <p className="text-red-500">{errors.passrepeat}</p>
-            )}
-
-            <div className="flex justify-start items-center mt-4 gap-x-8 ">
-              <button
-                type="submit"
-                className="bg-orange-400 py-2 px-8 w-3/4 rounded-md "
-              >
-                ثبت نام
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setIsLogin(true);
-                  // مقداردهی مناسب به ورودی‌ها برای ورود
-                  setFormData({
-                    name: "",
-                    lastname: "",
-                    email: "",
-                    mobile: "",
-                    password: "",
-                    
-                  });
-                  navigate('/login')
-                }}
-                className="text-blue-500 dark:text-white underline"
-              >
-                ورود
-              </button>
+        {modalVisible && (
+          <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
+            <div className="bg-white p-6 rounded-lg shadow-lg text-clip">
+              <p className="text-green-400">{modalMessage}</p>
             </div>
-          </form>
-        ) : (
-          <Login formData={formData} setFormData={setFormData} setIsLogin={setIsLogin} handleChange={handleChange} />
+          </div>
         )}
+        <form
+          onSubmit={handleSubmit}
+          className="max-w-[30rem] min-h-72  p-4 mx-auto shadow-personal rounded-md dark:bg-zinc-600 "
+        >
+          <h3>حساب کاربری</h3>
+          {/* نمایش خطا در صورت وجود */}
+          {error && <p className="text-red-500">{error}</p>}{" "}
+          {loading ? (
+            <div className="flex justify-center items-center">
+              <div className="w-10 h-10 border-4 border-t-transparent border-gray-500 rounded-full animate-spin"></div>
+            </div>
+          ) : (
+            <></>
+          )}
+          <input
+            className="w-full bg-slate-200 text-black p-2 mt-4 rounded-md dark:text-black"
+            type="text"
+            name="name"
+            placeholder="نام "
+            value={name || ""}
+            onChange={(e) => setName(e.target.value)}
+            disabled={loading}
+          />
+          <input
+            className="w-full bg-slate-200 p-2 rounded-md mt-4 "
+            type="text"
+            placeholder="شماره تلفن"
+            value={phone || ""}
+            onChange={(e) => setPhone(e.target.value)}
+            disabled={loading}
+          />
+          <input
+            className="w-full bg-slate-200 p-2 rounded-md mt-4  "
+            type="email"
+            placeholder=" ایمیل"
+            value={email || ""}
+            onChange={(e) => setEmail(e.target.value)}
+            disabled={loading}
+          />
+          <input
+            type="password"
+            name="password"
+            id="pass"
+            placeholder="گذرواژه"
+            className="w-full bg-slate-200 p-2 rounded-md mt-4 "
+            value={password || ""}
+            onChange={(e) => setPassword(e.target.value)}
+            disabled={loading}
+          />
+          <input
+            type="password"
+            placeholder="تکرار گذرواژه"
+            className="w-full bg-slate-200 p-2 rounded-md mt-4 "
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            value={confirmPassword || ""}
+            disabled={loading}
+          />
+          <div className="flex justify-start items-center mt-4 gap-x-8 ">
+            <button
+              type="submit"
+              className={`bg-orange-400 py-2 px-8 w-3/4 rounded-md ${
+                loading ? "opacity-50" : ""
+              }`}
+              disabled={loading}
+            >
+              ثبت نام
+            </button>
+            <Link
+              to="/login"
+              className="text-blue-500 dark:text-white underline"
+            >
+              ورود
+            </Link>
+          </div>
+        </form>
       </div>
     </div>
   );

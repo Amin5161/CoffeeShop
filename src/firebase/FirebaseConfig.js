@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 const firebaseConfig = {
   apiKey: "AIzaSyCl6vStIBMVL1WW3u9oZhJuRYRcPHRaSIo",
   authDomain: "amin-coffee-6138a.firebaseapp.com",
@@ -9,7 +10,7 @@ const firebaseConfig = {
   appId: "1:988699823071:web:68d0aed179974bf745126a",
 };
 
- initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
 const db = getFirestore();
-
-export { db };
+const auth = getAuth();
+export { db, auth };
