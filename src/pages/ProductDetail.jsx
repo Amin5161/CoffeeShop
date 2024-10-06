@@ -58,7 +58,7 @@ export default function ProductDetail() {
                 className="w-full h-full object-cover rounded-md"
               />
             </div>
-            <div className="bg-[#ebeaea] dark:bg-zinc-600 grid col-span-12 sm:col-span-6 pt-8 sm:pt-0 sm:mr-8">
+            <div className="bg-[#ebeaea] dark:bg-zinc-600 grid col-span-12 sm:col-span-6   sm:mr-8 p-4">
               <h1 className="border-b-2 font-vazirBold text-xl">
                 {product.name}
               </h1>

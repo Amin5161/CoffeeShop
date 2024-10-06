@@ -70,13 +70,6 @@ export default function Register() {
           <h3>حساب کاربری</h3>
           {/* نمایش خطا در صورت وجود */}
           {error && <p className="text-red-500">{error}</p>}{" "}
-          {loading ? (
-            <div className="flex justify-center items-center">
-              <div className="w-10 h-10 border-4 border-t-transparent border-gray-500 rounded-full animate-spin"></div>
-            </div>
-          ) : (
-            <></>
-          )}
           <input
             className="w-full bg-slate-200 text-black p-2 mt-4 rounded-md dark:text-black"
             type="text"
@@ -128,7 +121,13 @@ export default function Register() {
               }`}
               disabled={loading}
             >
-              ثبت نام
+              {loading ? (
+                <div className="flex justify-center items-center">
+                  <div className="w-6 h-6 border-4 border-t-transparent border-gray-500 rounded-full animate-spin"></div>
+                </div>
+              ) : (
+                "ثبت نام"
+              )}
             </button>
             <Link
               to="/login"

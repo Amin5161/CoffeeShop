@@ -8,7 +8,8 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
   const { setUser } = useContext(UserContext);
 
   const navigate = useNavigate();
@@ -20,11 +21,19 @@ export default function Login() {
     try {
       const user = await LoginUser(email, password);
       console.log("User logged : ", user.displayName);
-      navigate("/");
-      alert("ورود موفق بود");
+      setModalVisible(true);
+      setModalMessage("ورود موفق بود");
+      setTimeout(() => {
+        setModalVisible(false);
+        navigate("/");
+      }, 2000);
       setUser(user);
     } catch {
-      alert(" ایمیل یا گذزواژه اشتباه است");
+      setModalVisible(true);
+      setModalMessage(" ایمیل یا گذزواژه اشتباه است");
+      setTimeout(() => {
+        setModalVisible(false);
+      }, 3000);
       setError("ایمیل یا گذزواژه اشتباه است");
     } finally {
       setLoading(false);
@@ -34,6 +43,13 @@ export default function Login() {
   return (
     <div className="bg-slate-300 dark:bg-zinc-700 h-screen flex items-start justify-center">
       <div className="container">
+        {modalVisible && (
+          <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
+            <div className="bg-white py-4 px-20 rounded-lg shadow-lg text-clip">
+              <p className="text-green-400">{modalMessage}</p>
+            </div>
+          </div>
+        )}
         <div className="mt-40 mb-40">
           <form
             action=""
@@ -49,6 +65,7 @@ export default function Login() {
               value={email || ""}
               onChange={(e) => setEmail(e.target.value)}
               required
+              disabled={loading}
             />
             <input
               type="password"
@@ -57,6 +74,7 @@ export default function Login() {
               value={password || ""}
               onChange={(e) => setPassword(e.target.value)}
               required
+              disabled={loading}
             />
 
             <div className="flex justify-center items-center mt-4 gap-x-4">
@@ -65,7 +83,13 @@ export default function Login() {
                 disabled={loading}
                 className="bg-orange-400 py-2 px-8 w-3/4 rounded-md "
               >
-                {loading ? "در حال ورود..." : "ورود"}
+                {loading ? (
+                  <div className="flex justify-center items-center">
+                    <div className="w-6 h-6 border-4 border-t-transparent border-gray-500 rounded-full animate-spin"></div>
+                  </div>
+                ) : (
+                  "ورود"
+                )}
               </button>
               <Link
                 to="/registration"

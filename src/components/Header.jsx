@@ -14,6 +14,7 @@ import logo from "/public/images/app-logo-type.svg";
 import { SidebarContext } from "./Context/SidebarContext";
 import { MobileCartContext } from "./Context/MobileCartContext";
 import SearchBar from "./SearchBar";
+import { getAuth, signOut } from "firebase/auth";
 
 export default function Header() {
   const { user } = useContext(UserContext);
@@ -30,6 +31,21 @@ export default function Header() {
   const { setIsSidebarOpen } = useContext(SidebarContext);
   const { setIsMobileCartOpen } = useContext(MobileCartContext);
   console.log(cart);
+
+  const handleLogout = async () => {
+    if (user) {
+      const auth = getAuth();
+      try {
+        await signOut(auth);
+        console.log("User signed out successfully.");
+        navigate("/login");
+      } catch (error) {
+        console.error("error signing out", error);
+      }
+    } else {
+      navigate("/login");
+    }
+  };
 
   return (
     <div className="flex items-center justify-between w-full mx-auto md:w-[90%] px-6 py-2 md:rounded-2xl md:top-4 fixed bg-white md:bg-zinc-950/60 dark:bg-zinc-950/60 backdrop-blur-sm z-40">
@@ -141,6 +157,7 @@ export default function Header() {
         <img src={logo} alt="logo type" className="h-full w-full" />
       </div>
 
+          {/* سرچ و سبد خرید */}
       <div className="flex gap-x-2 items-center">
         <SearchBar />
 
@@ -278,9 +295,14 @@ export default function Header() {
               )}
             </div>
           </div>
+
+          {/* ورود و ثبت نام */}
           <div className=" items-center flex gap-x-2  border-r pr-3">
             <span aria-label="Login">
-              <HiArrowRightOnRectangle className="text-2xl text-[#ecc378]" />
+              <HiArrowRightOnRectangle
+                onClick={handleLogout}
+                className="text-2xl text-[#ecc378] cursor-pointer"
+              />
             </span>
             {user ? (
               <Link to="adminpanel">

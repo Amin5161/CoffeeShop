@@ -1,10 +1,10 @@
 import ContactUs from "./pages/ContactUs";
 import About from "./pages/About";
-import {  Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Blog from "./pages/Blog";
 import Shop from "./pages/Shop";
 import Login from "./pages/Login";
-import UserProvider from "./components/Context/UserContext";
+import { UserProvider } from "./components/Context/UserContext";
 import Layout from "./components/Layout";
 import HomeComponent from "./components/HomeComponent";
 import { DarkModeProvider } from "./components/Context/DarkModeContext";
@@ -22,11 +22,11 @@ import { ProductsProvider } from "./components/Context/ProductsContext";
 
 export default function App() {
   return (
-    <ProductsProvider>
-      <SearchProvider>
-        <MobileCartProvider>
-          <CartProvider>
-            <UserProvider>
+    <UserProvider>
+      <ProductsProvider>
+        <SearchProvider>
+          <MobileCartProvider>
+            <CartProvider>
               <DarkModeProvider>
                 <SidebarProvider>
                   <Routes>
@@ -47,10 +47,10 @@ export default function App() {
                   </Routes>
                 </SidebarProvider>
               </DarkModeProvider>
-            </UserProvider>
-          </CartProvider>
-        </MobileCartProvider>
-      </SearchProvider>
-    </ProductsProvider>
+            </CartProvider>
+          </MobileCartProvider>
+        </SearchProvider>
+      </ProductsProvider>
+    </UserProvider>
   );
 }

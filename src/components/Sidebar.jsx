@@ -1,7 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "./Context/UserContext";
 
 import { IoMdClose } from "react-icons/io";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { IoHomeOutline } from "react-icons/io5";
 import { BsHandbag } from "react-icons/bs";
@@ -17,6 +18,9 @@ import { CiLight } from "react-icons/ci";
 import { CiDark } from "react-icons/ci";
 import { DarkModeContext } from "./Context/DarkModeContext";
 import { SidebarContext } from "./Context/SidebarContext";
+import { getAuth, signOut } from "firebase/auth";
+import { useCart } from "./Context/CartContext";
+import { ProductsContext } from "./Context/ProductsContext";
 
 export default function Sidebar() {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
@@ -25,10 +29,28 @@ export default function Sidebar() {
   console.log(setIsSidebarOpen, isSidebarOpen);
   const { pathname } = useLocation();
   console.log(pathname);
-
+  const navigate = useNavigate();
+  const { user } = useContext(UserContext);
+  const { products } = useContext(ProductsContext);
+  console.log(products);
   useEffect(() => {
     setIsSidebarOpen(false);
   }, [pathname, setIsSidebarOpen]);
+
+  const handleLogout = async () => {
+    if (user) {
+      const auth = getAuth();
+      try {
+        await signOut(auth);
+        console.log("User signed out successfully.");
+        navigate("/login");
+      } catch (error) {
+        console.error("error signing out", error);
+      }
+    } else {
+      navigate("/login");
+    }
+  };
 
   return (
     <div
@@ -114,13 +136,15 @@ export default function Sidebar() {
             }`}
           >
             <ul
-              className="space-y-3 pt-2  w-[10rem] text-gray-700 pr-6 dark:text-black 
-             child-hover:text-orange-500 text-sm cursor-pointer child:inline-block  "
+              className="space-y-3 py-2   text-gray-700 pr-6 dark:text-black 
+             child-hover:text-orange-500 child-hover:bg-white text-sm cursor-pointer child:inline-block  "
             >
-              <li>
-                <Link>قهوه ویژه</Link>
-              </li>
-              <li>
+              {products.map((product) => (
+                <li key={product.id} className="w-full hover:p-1">
+                  <Link to={`/product/${product.id}`}>{product.name} </Link>
+                </li>
+              ))}
+              {/* <li>
                 <Link>ویژه در سطح جهانی</Link>
               </li>
               <li>
@@ -134,7 +158,7 @@ export default function Sidebar() {
               </li>
               <li>
                 <Link>قهوه زینو برزیلی</Link>
-              </li>
+              </li> */}
             </ul>
           </div>
         </li>
@@ -275,9 +299,17 @@ export default function Sidebar() {
           <span aria-label="Login">
             <HiArrowRightOnRectangle className="text-2xl text-orange-400" />
           </span>
-          <Link to="/login" className="text-orange-400 flex">
-            ورود | ثبت نام
-          </Link>
+          <button onClick={handleLogout}>
+            {user ? (
+              <Link to="/login" className="text-orange-400 flex">
+                خروج
+              </Link>
+            ) : (
+              <Link to="/login" className="text-orange-400 flex">
+                ورود | ثبت نام
+              </Link>
+            )}
+          </button>
         </div>
       </div>
     </div>
